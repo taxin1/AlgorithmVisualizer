@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.algorithmvisualizer.SortingAlgorithmsMenuController">
+    <center>
+        <VBox alignment="CENTER" prefHeight="417.0" prefWidth="245.0" spacing="10">
+            <Button onAction="#handleSelectionSortButtonClick" prefHeight="30" prefWidth="120" text="Selection Sort" />
+            <Button onAction="#handleBubbleSortButtonClick" prefHeight="30" prefWidth="120" text="Bubble Sort" />
+            <Button onAction="#handleInsertionSortButtonClick" prefHeight="30" prefWidth="120" text="Insertion Sort" />
+            <Button onAction="#handleMergeSortButtonClick" prefHeight="30" prefWidth="120" text="Merge Sort" />
+            <Button onAction="#handleHeapSortButtonClick" prefHeight="30" prefWidth="120" text="Heap Sort" />
+            <Button onAction="#handleCountingSortButtonClick" prefHeight="30" prefWidth="120" text="Counting Sort" />
+            <Button onAction="#handleRadixSortButtonClick" prefHeight="30" prefWidth="120" text="Radix Sort" />
+            <Button onAction="#handleBucketSortButtonClick" prefHeight="30" prefWidth="120" text="Bucket Sort" />
+            <Button onAction="#handleTreeSortButtonClick" prefHeight="30" prefWidth="120" text="Tree Sort" />
+        </VBox>
+    </center>
+</BorderPane>

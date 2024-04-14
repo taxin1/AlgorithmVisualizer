@@ -1,0 +1,54 @@
+.pane{
+    -fx-hgap: 5;
+    -fx-padding: 10;
+    -fx-spacing: 5;
+}
+
+.hbox{
+    -fx-spacing: 5;
+    -fx-alignment: bottom-center;
+    -fx-min-height: 30;
+}
+
+.buttonbox{
+    -fx-spacing: 5;
+    -fx-min-height: 30;
+}
+
+.vbox{
+    -fx-border-width: 0;
+    -fx-alignment: center;
+    -fx-max-width: 80;
+}
+
+.list-view{
+    -fx-alignment: center;
+}
+
+.text-field{
+    -fx-background-insets: 0;
+    -fx-border-style: solid;
+    -fx-border-width: 0.5px;
+    -fx-alignment: center;
+    -fx-font-weight: bold;
+    -fx-pref-width: 40px;
+}
+
+.button{
+    -fx-pref-width: 90;
+    -fx-background-color:
+            #707070,
+            linear-gradient(#fcfcfc, #f3f3f3),
+            linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-spacing: 5;
+    -fx-text-fill: black;
+    -fx-font-size: 10px;
+
+}
+
+.vbox{
+    -fx-min-width: 100px;
+    -fx-border-color: gray;
+}

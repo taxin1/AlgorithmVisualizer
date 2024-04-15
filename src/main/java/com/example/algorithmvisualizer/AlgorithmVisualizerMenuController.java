@@ -1,12 +1,10 @@
 package com.example.algorithmvisualizer;
 
+import com.example.algorithmvisualizer.view.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-
-import java.io.IOException;
 
 public class AlgorithmVisualizerMenuController {
 
@@ -21,16 +19,19 @@ public class AlgorithmVisualizerMenuController {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SortingAlgorithmsMenu.fxml"));
-            Parent sortingAlgorithmsMenu = loader.load();
-            SortingAlgorithmsMenuController controller = loader.getController();
+            // Instantiate the MainWindow
+            MainWindow mainWindow = new MainWindow();
 
-            mainStackPane.getChildren().clear();
-            mainStackPane.getChildren().add(sortingAlgorithmsMenu);
-        } catch (IOException e) {
+            // Get the current scene from the mainStackPane
+            Scene currentScene = mainStackPane.getScene();
+
+            // Replace the root node of the current scene with the MainWindow
+            currentScene.setRoot(mainWindow);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void handleSearchingButtonClick(ActionEvent event) {

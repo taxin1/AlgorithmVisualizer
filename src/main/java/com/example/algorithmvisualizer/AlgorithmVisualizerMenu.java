@@ -13,7 +13,7 @@ public class AlgorithmVisualizerMenu extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AlgorithmVisualizerMenu.fxml")));
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 900, 600);
         stage.setScene(scene);
         stage.show();
     }

@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 
+import java.util.Objects;
+
 public class AlgorithmVisualizerMenuController {
 
     @FXML
@@ -24,7 +26,7 @@ public class AlgorithmVisualizerMenuController {
 
             // Get the current scene from the mainStackPane
             Scene currentScene = mainStackPane.getScene();
-
+            currentScene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("styles.css")).toExternalForm());
             // Replace the root node of the current scene with the MainWindow
             currentScene.setRoot(mainWindow);
         } catch (Exception e) {

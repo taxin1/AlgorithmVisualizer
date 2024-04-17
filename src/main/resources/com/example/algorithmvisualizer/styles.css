@@ -52,3 +52,5 @@
     -fx-min-width: 100px;
     -fx-border-color: gray;
 }
+
+.button:hover

@@ -1,0 +1,16 @@
+.button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 40; /* Adjust the value to change the roundness */
+    -fx-border-radius: 40; /* Adjust the value to change the roundness */
+    -fx-border-color: #FFFFFF; /* Border color */
+    -fx-border-width: 2px; /* Border width */
+    -fx-text-fill: #FFFFFF; /* Text color */
+    -fx-font-size: 15px; /* Font size */
+    -fx-font-family: "MesloLGL Nerd Font"; /* Font family */
+    -fx-font-weight: bold; /* Make the font bold */
+}
+
+.button:hover {
+    -fx-background-color: rgba(204, 204, 204, 0.5); /* Background color on hover */
+    -fx-text-fill: #FFFFFF; /* Text color on hover */
+}

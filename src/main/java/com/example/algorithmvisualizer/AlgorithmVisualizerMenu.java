@@ -15,6 +15,7 @@ public class AlgorithmVisualizerMenu extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
         Scene scene = new Scene(root, 900, 600);
         stage.setScene(scene);
+        stage.setTitle("AlgoWiz");
         stage.show();
     }
 

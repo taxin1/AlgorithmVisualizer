@@ -28,7 +28,7 @@ public class AlgorithmVisualizerMenuController {
     @FXML
     private void handleSortingButtonClick(ActionEvent event) {
         if (mainAnchorPane == null) {
-            System.err.println("Main stack pane is null.");
+            System.err.println("Main anchor pane is null.");
             return;
         }
 

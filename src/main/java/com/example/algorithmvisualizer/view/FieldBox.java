@@ -50,4 +50,13 @@ public class FieldBox extends HBox {
     public void setLabel(String s){
         label.setText(s);
     }
+
+    public void clearFields() {
+        for (int i = 1; i < this.getChildren().size(); i++) {
+            EnterField currentField = getTextField(i);
+            if (currentField != null) {
+                currentField.clear(); // Clear the text of the EnterField
+            }
+        }
+    }
 }

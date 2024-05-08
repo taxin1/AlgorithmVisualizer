@@ -26,11 +26,7 @@ public class EnterField extends TextField {
 
     private void addChangeListener(){
         this.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            if(!newValue.equals("")){
-                setEditableField(true);
-            }else{
-                setEditableField(false);
-            }
+            setEditableField(!newValue.isEmpty());
         });
     }
     private void setEditableField(boolean isEditable){

@@ -6,14 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 public class AlgorithmVisualizerMenu extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+        Parent root = loader.load();
+        AlgorithmVisualizerMenuController controller = loader.getController();
         Scene scene = new Scene(root, 900, 600);
+        controller.setPrimaryScene(scene); // Pass the scene to the controller
         stage.setScene(scene);
         stage.setTitle("AlgoWiz");
         stage.show();

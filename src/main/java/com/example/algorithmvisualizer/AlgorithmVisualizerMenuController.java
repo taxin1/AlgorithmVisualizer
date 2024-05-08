@@ -3,6 +3,7 @@ package com.example.algorithmvisualizer;
 import com.example.algorithmvisualizer.view.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,10 +15,16 @@ import java.util.Objects;
 public class AlgorithmVisualizerMenuController {
     @FXML
     private AnchorPane mainAnchorPane;
+    private Scene primaryScene;
+
+    public void setPrimaryScene(Scene scene) {
+        this.primaryScene = scene;
+        System.out.println("Primary Scene set: " + scene);
+    }
 
     @FXML
     private void initialize() {
-        String imageFilePath = getClass().getResource("/images/mainMenuBackground.jpg").toString();
+        String imageFilePath = Objects.requireNonNull(getClass().getResource("/images/mainMenuBackground.jpg")).toString();
         Image image = new Image(imageFilePath);
         ImageView imageView = new ImageView(image);
 
@@ -33,15 +40,16 @@ public class AlgorithmVisualizerMenuController {
         }
 
         try {
-            MainWindow mainWindow = new MainWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
             Scene currentScene = mainAnchorPane.getScene();
+            System.out.println("Passing Primary Scene to MainWindow: " + primaryScene);
+            MainWindow mainWindow = new MainWindow(primaryScene, loader);
             currentScene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("styles.css")).toExternalForm());
             currentScene.setRoot(mainWindow);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void handleSearchingButtonClick(ActionEvent event) {

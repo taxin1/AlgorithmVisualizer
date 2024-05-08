@@ -30,4 +30,7 @@ public class ChartPane extends HBox {
         }
     }
 
+    public void clearChart() {
+        this.getChildren().clear();
+    }
 }

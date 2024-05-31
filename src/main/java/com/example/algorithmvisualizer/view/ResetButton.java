@@ -1,6 +1,6 @@
 package com.example.algorithmvisualizer.view;
 
-import com.example.algorithmvisualizer.algorithms.AlgorithmAnimation ;
+import com.example.algorithmvisualizer.SortAlgorithms.AlgorithmAnimation ;
 import javafx.scene.control.Button;
 
 public class ResetButton extends Button {

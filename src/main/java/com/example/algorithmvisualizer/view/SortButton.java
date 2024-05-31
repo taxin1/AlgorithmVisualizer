@@ -1,7 +1,7 @@
 package com.example.algorithmvisualizer.view;
 
-import com.example.algorithmvisualizer.algorithms.AlgorithmAnimation ;
-import com.example.algorithmvisualizer.algorithms.RadixSortAnimation ;
+import com.example.algorithmvisualizer.SortAlgorithms.AlgorithmAnimation ;
+import com.example.algorithmvisualizer.SortAlgorithms.RadixSortAnimation ;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 public class SortButton extends Button {

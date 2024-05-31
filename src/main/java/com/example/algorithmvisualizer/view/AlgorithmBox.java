@@ -1,11 +1,10 @@
 package com.example.algorithmvisualizer.view;
 
-import com.example.algorithmvisualizer.algorithms.*;
+import com.example.algorithmvisualizer.SortAlgorithms.*;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
-
 
 public class AlgorithmBox extends VBox {
     private static ListView<String> algorithmList = new ListView<>();
@@ -15,7 +14,10 @@ public class AlgorithmBox extends VBox {
         this.getStyleClass().add("vbox");
         algorithmList.getStyleClass().add("list-view");
 
-        initializeAlgorithms();
+        if (algorithmList.getItems().isEmpty()) {
+            initializeAlgorithms();
+        }
+
         this.getChildren().add(algorithmList);
         algorithmList.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             selectedIndices = newValue;
@@ -34,8 +36,7 @@ public class AlgorithmBox extends VBox {
                     }
                 }
                 fieldBox.setLabel("Enter Values 10-50: ");
-            }
-            else{
+            } else {
                 for(Node node : fieldBox.getChildren()){
                     if(node instanceof EnterField) {
                         node.setStyle("-fx-text-fill: black");
@@ -43,13 +44,10 @@ public class AlgorithmBox extends VBox {
                 }
                 fieldBox.setLabel("Enter Values 1-50: ");
             }
-
-
         });
     }
 
     private void initializeAlgorithms(){
-
         algorithmList.getItems().add("Bubble Sort");
         algorithmList.getItems().add("Selection Sort");
         algorithmList.getItems().add("Insertion Sort");
@@ -61,28 +59,28 @@ public class AlgorithmBox extends VBox {
     }
 
     public static AlgorithmAnimation getAlgorithm(){
-
-       switch(selectedIndices){
-           case "Bubble Sort":
-               return new BubbleSortAnimation();
-           case "Selection Sort":
-               return new SelectionSortAnimation();
-           case "Insertion Sort":
-               return new InsertionSortAnimation();
-           case "Shell Sort":
-               return new ShellSortAnimation();
-           case "Merge Sort":
-               return new MergeSortAnimation();
-           case "Quick Sort":
-               return new QuickSortAnimation();
-           case "Counting Sort":
-               return new CountingSortAnimation();
-           case "Radix Sort":
+        switch(selectedIndices){
+            case "Bubble Sort":
+                return new BubbleSortAnimation();
+            case "Selection Sort":
+                return new SelectionSortAnimation();
+            case "Insertion Sort":
+                return new InsertionSortAnimation();
+            case "Shell Sort":
+                return new ShellSortAnimation();
+            case "Merge Sort":
+                return new MergeSortAnimation();
+            case "Quick Sort":
+                return new QuickSortAnimation();
+            case "Counting Sort":
+                return new CountingSortAnimation();
+            case "Radix Sort":
                 return new RadixSortAnimation();
-           default:
-               return null;
-       }
+            default:
+                return null;
+        }
     }
+
     public static String getSelectedIndices(){
         return selectedIndices;
     }

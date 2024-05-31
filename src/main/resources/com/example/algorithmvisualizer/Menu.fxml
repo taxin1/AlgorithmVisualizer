@@ -11,7 +11,7 @@
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font></Button>
-      <Button alignment="CENTER" layoutX="550.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleSearchingButtonClick" prefHeight="59.0" prefWidth="219.0" stylesheets="@menuButtonStyle.css" text="Searching Algorithms" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="550.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleSearchingButtonClick" prefHeight="59.0" prefWidth="219.0" stylesheets="@menuButtonStyle.css" text="Pathfinding Algorithms" textAlignment="CENTER">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font>

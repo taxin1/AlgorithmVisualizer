@@ -1,4 +1,4 @@
-package com.example.algorithmvisualizer.algorithms;
+package com.example.algorithmvisualizer.SortAlgorithms;
 
 import com.example.algorithmvisualizer.view.MainWindow;
 import javafx.animation.SequentialTransition;
@@ -55,7 +55,7 @@ public abstract class AlgorithmAnimation {
     }
 
     final void addTranslateTransition(int variance, StackPane bar, int direction){
-        TranslateTransition tt = new TranslateTransition(Duration.millis(500), bar);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(400), bar);
         tt.setByX(25 * variance * direction);
         tt.setAutoReverse(false);
         sq.getChildren().add(tt);
@@ -86,7 +86,7 @@ public abstract class AlgorithmAnimation {
 
             sortedArrList.set(currentIndex, -1);
 
-            TranslateTransition tt = new TranslateTransition(Duration.millis(200), currentPane);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(100), currentPane);
             tt.setByX(25 * variance);
             tt.setAutoReverse(false);
             resetTransition.getChildren().add(tt);

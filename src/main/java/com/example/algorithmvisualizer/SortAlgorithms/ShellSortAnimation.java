@@ -1,4 +1,4 @@
-package com.example.algorithmvisualizer.algorithms;
+package com.example.algorithmvisualizer.SortAlgorithms;
 
 public class ShellSortAnimation extends AlgorithmAnimation {
     @Override

@@ -4,6 +4,7 @@ import com.example.algorithmvisualizer.view.MainWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,7 +54,19 @@ public class AlgorithmVisualizerMenuController {
 
     @FXML
     private void handleSearchingButtonClick(ActionEvent event) {
-        System.out.println("Searching Algorithms button clicked!");
+        if (mainAnchorPane == null) {
+            System.err.println("Main anchor pane is null.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PathfindingVisualizer.fxml"));
+            Parent pathfindingRoot = loader.load();
+            Scene currentScene = mainAnchorPane.getScene();
+            currentScene.setRoot(pathfindingRoot);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

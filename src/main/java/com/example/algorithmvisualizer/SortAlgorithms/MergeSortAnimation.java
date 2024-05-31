@@ -1,4 +1,4 @@
-package com.example.algorithmvisualizer.algorithms;
+package com.example.algorithmvisualizer.SortAlgorithms;
 
 import com.example.algorithmvisualizer.view.MainWindow;
 import javafx.scene.layout.StackPane;

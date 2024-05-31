@@ -1,9 +1,7 @@
-package com.example.algorithmvisualizer.algorithms;
+package com.example.algorithmvisualizer.SortAlgorithms;
 
 import com.example.algorithmvisualizer.view.MainWindow;
-import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;

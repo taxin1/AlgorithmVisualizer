@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ButtonBox extends HBox {
     ResetButton resetButton;
@@ -15,19 +16,21 @@ public class ButtonBox extends HBox {
     Button backButton;
     Button removeBarsButton;
 
-    public ButtonBox(FieldBox fieldBox, FXMLLoader loader, Scene primaryScene) {
+    public ButtonBox(FieldBox fieldBox, FXMLLoader loader, Scene primaryScene, String stylesheetPath) {
         this.getStyleClass().add("buttonbox");
 
         sortButton = new SortButton(fieldBox);
         resetButton = new ResetButton(fieldBox);
 
-        removeBarsButton = new Button("Remove Bars");
+        removeBarsButton = new Button("Reset Everything");
         removeBarsButton.setOnAction(event -> {
             Stage stage = (Stage) this.getScene().getWindow();
-            MainWindow newMainWindow = new MainWindow(primaryScene, loader);
-            newMainWindow.getScene().getStylesheets().add("styles.css");
-            stage.setScene(new Scene(newMainWindow));
+            MainWindow newMainWindow = new MainWindow(primaryScene, loader, stylesheetPath);
+            Scene scene = new Scene(newMainWindow, 900, 600);
+            scene.getStylesheets().add(stylesheetPath);
+            stage.setScene(scene);
         });
+
 
         // Create and add back button
         backButton = new Button("Back");

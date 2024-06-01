@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 public class MainWindow extends BorderPane {
     public static ChartPane chartPane;
 
-    public MainWindow(Scene algorithmVisualizerMenuScene, FXMLLoader loader) {
+    public MainWindow(Scene algorithmVisualizerMenuScene, FXMLLoader loader, String stylesheetPath) {
         this.getStyleClass().add("pane");
 
         if (this.getTop() instanceof FieldBox) {
@@ -28,7 +28,7 @@ public class MainWindow extends BorderPane {
         chartPane = new ChartPane();
         this.setTop(fieldBox);
         this.setCenter(chartPane);
-        this.setBottom(new ButtonBox(fieldBox, loader, algorithmVisualizerMenuScene));
+        this.setBottom(new ButtonBox(fieldBox, loader, algorithmVisualizerMenuScene, stylesheetPath));
         this.setLeft(new AlgorithmBox(fieldBox));
     }
 }

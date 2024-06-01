@@ -44,7 +44,8 @@ public class AlgorithmVisualizerMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
             Scene currentScene = mainAnchorPane.getScene();
             System.out.println("Passing Primary Scene to MainWindow: " + primaryScene);
-            MainWindow mainWindow = new MainWindow(primaryScene, loader);
+            String stylesheetPath = Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm();
+            MainWindow mainWindow = new MainWindow(primaryScene, loader, stylesheetPath);
             currentScene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("styles.css")).toExternalForm());
             currentScene.setRoot(mainWindow);
         } catch (Exception e) {
@@ -63,6 +64,7 @@ public class AlgorithmVisualizerMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PathfindingVisualizer.fxml"));
             Parent pathfindingRoot = loader.load();
             Scene currentScene = mainAnchorPane.getScene();
+            currentScene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("Pathfinding.css")).toExternalForm());
             currentScene.setRoot(pathfindingRoot);
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,11 +1,13 @@
 package com.example.algorithmvisualizer.view;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 
 public class ResetButton extends Button {
 
     FieldBox fieldBox;
     SortButton sortButton;
+    ToggleButton playPause;
 
     public ResetButton(FieldBox fieldBox) {
         this.fieldBox = fieldBox;
@@ -30,10 +32,12 @@ public class ResetButton extends Button {
 
             this.setDisable(true); // Disable the reset button
             this.sortButton.setDisable(false); // Enable the sort button
+            this.playPause.setDisable(true);
         });
     }
 
     public void setSortButton(SortButton sortButton) {
         this.sortButton = sortButton;
     }
+    public void setPlayPause(ToggleButton playPause) { this.playPause = playPause; }
 }

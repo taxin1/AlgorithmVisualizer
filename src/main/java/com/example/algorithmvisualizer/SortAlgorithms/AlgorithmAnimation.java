@@ -1,7 +1,7 @@
 package com.example.algorithmvisualizer.SortAlgorithms;
 
+import com.example.algorithmvisualizer.view.ButtonBox;
 import com.example.algorithmvisualizer.view.MainWindow;
-import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -11,9 +11,12 @@ import java.util.List;
 
 public abstract class AlgorithmAnimation {
     List<Integer[]> transitions = new ArrayList<>();
-    SequentialTransition sq = new SequentialTransition();
+    List<TranslateTransition> transitionList = new ArrayList<>();
     int[] spOrder;
     int spSize;
+    int currentTransitionIndex = 0;
+    Duration transitionDuration = Duration.millis(400);
+    AlgorithmAnimation current = this;
 
     final void swap(int[] arr, int i, int j) {
         int tmp = arr[j];
@@ -52,26 +55,48 @@ public abstract class AlgorithmAnimation {
     }
 
     final void addTranslateTransition(int variance, StackPane bar, int direction) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(400), bar);
+        TranslateTransition tt = new TranslateTransition(transitionDuration, bar);
         tt.setByX(25 * variance * direction);
         tt.setAutoReverse(false);
-        sq.getChildren().add(tt);
+        transitionList.add(tt);
     }
+
+    public AlgorithmAnimation getCurrent () { return current; }
 
     public final void setSPSize(int spSize) {
         this.spSize = spSize;
     }
 
     void playSequentialTransition() {
-        sq.play();
+        if (transitionList.isEmpty()) return;
+        playNextTransition();
     }
 
-    public void pauseSequentialTransition() {
-        sq.pause();
+    private void playNextTransition() {
+        if (currentTransitionIndex < transitionList.size()) {
+            TranslateTransition currentTransition = transitionList.get(currentTransitionIndex);
+            currentTransition.setOnFinished(event -> {
+                if (!ButtonBox.isPaused) {
+                    currentTransitionIndex++;
+                    playNextTransition();
+                    System.out.println(1);
+                }
+            });
+            currentTransition.play();
+        }
+        if (currentTransitionIndex >= transitionList.size()) {
+            ButtonBox.setPlayPauseDisabled();
+        }
     }
 
-    public void resumeSequentialTransition() {
-        sq.play();
+    public void continueTransition () {
+        currentTransitionIndex++;
+        playNextTransition();
+        System.out.println(1);
+    }
+
+    public void setTransitionDuration(Duration duration) {
+        this.transitionDuration = duration;
     }
 
     public abstract void startSort(int[] arr);

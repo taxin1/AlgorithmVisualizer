@@ -7,7 +7,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
 
 public class AlgorithmBox extends VBox {
-    private static ListView<String> algorithmList = new ListView<>();
+    private static final ListView<String> algorithmList = new ListView<>();
     private static String selectedIndices = "";
 
     public AlgorithmBox(FieldBox fieldBox){
@@ -21,10 +21,13 @@ public class AlgorithmBox extends VBox {
         this.getChildren().add(algorithmList);
         algorithmList.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             selectedIndices = newValue;
+            System.out.println(selectedIndices);
+            if (MainWindow.descriptionBox != null) {
+                MainWindow.descriptionBox.updateDescription(getDescriptionForAlgorithm(selectedIndices));
+            }
             if(selectedIndices.equals("Radix Sort")){
                 for(Node node : fieldBox.getChildren()){
-                    if(node instanceof EnterField) {
-                        EnterField currentField = (EnterField) node;
+                    if(node instanceof EnterField currentField) {
                         if (!currentField.getText().isEmpty()) {
                             int value = Integer.parseInt(currentField.getText());
                             if (value < 10) {
@@ -56,6 +59,16 @@ public class AlgorithmBox extends VBox {
         algorithmList.getItems().add("Quick Sort");
         algorithmList.getItems().add("Counting Sort");
         algorithmList.getItems().add("Radix Sort");
+    }
+
+    private String getDescriptionForAlgorithm(String algorithmName) {
+        return switch (algorithmName) {
+            case "Bubble Sort" -> "Bubble Sort is a simple sorting algorithm...";
+            case "Selection Sort" -> "Selection Sort is another simple sorting algorithm...";
+            case "Insertion Sort" -> "Insertion Sort is yet another simple sorting algorithm...";
+            // Add descriptions for other algorithms
+            default -> "";
+        };
     }
 
     public static AlgorithmAnimation getAlgorithm(){

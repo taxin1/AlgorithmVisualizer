@@ -4,6 +4,7 @@ import com.example.algorithmvisualizer.SortAlgorithms.AlgorithmAnimation;
 import com.example.algorithmvisualizer.SortAlgorithms.RadixSortAnimation;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 
 public class SortButton extends Button {
 
@@ -12,8 +13,9 @@ public class SortButton extends Button {
     int[] arr;
     FieldBox fieldBox;
     ResetButton resetButton;
+    ToggleButton playPauseButton;
 
-    public SortButton(FieldBox fieldBox) {
+    public SortButton(FieldBox fieldBox, ButtonBox buttonBox) {
         this.fieldBox = fieldBox;
         this.setDisable(false);
 
@@ -50,8 +52,12 @@ public class SortButton extends Button {
                 a.show();
             } else {
                 try {
+                    assert algorithm != null;
+                    buttonBox.setCurrent(algorithm);
+                    algorithm.setTransitionDuration(ButtonBox.animationDuration);
                     algorithm.setSPSize(arr.length);
                     this.setDisable(true);
+                    this.playPauseButton.setDisable(false);
                     algorithm.startSort(arr);
                     algorithm.playAnimation();
                     this.resetButton.setDisable(false);
@@ -67,4 +73,6 @@ public class SortButton extends Button {
     public void setResetButton(ResetButton resetButton) {
         this.resetButton = resetButton;
     }
+
+    public void setPlayPauseButton(ToggleButton playPauseButton) { this.playPauseButton = playPauseButton;}
 }

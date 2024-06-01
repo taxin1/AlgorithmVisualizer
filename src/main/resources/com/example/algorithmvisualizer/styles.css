@@ -60,3 +60,10 @@
     -fx-min-width: 100px;
     -fx-border-color: gray;
 }
+
+.desc{
+    -fx-border-width: 0;
+    -fx-alignment: center;
+    -fx-pref-width: 150;
+    -fx-pref-height: 400;
+}

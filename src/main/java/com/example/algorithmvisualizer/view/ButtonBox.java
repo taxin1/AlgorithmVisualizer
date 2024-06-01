@@ -1,25 +1,33 @@
 package com.example.algorithmvisualizer.view;
 
+import com.example.algorithmvisualizer.SortAlgorithms.AlgorithmAnimation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class ButtonBox extends HBox {
     ResetButton resetButton;
     SortButton sortButton;
     Button backButton;
     Button removeBarsButton;
+    Slider durationSlider;
+    static ToggleButton playPause; // New toggle button
+    AlgorithmAnimation current;
+    static Duration animationDuration = Duration.millis(400);
+    public static boolean isPaused = false; // Variable to store pause state, initially paused
 
     public ButtonBox(FieldBox fieldBox, FXMLLoader loader, Scene primaryScene, String stylesheetPath) {
         this.getStyleClass().add("buttonbox");
 
-        sortButton = new SortButton(fieldBox);
+        sortButton = new SortButton(fieldBox, this);
         resetButton = new ResetButton(fieldBox);
 
         removeBarsButton = new Button("Reset Everything");
@@ -31,6 +39,29 @@ public class ButtonBox extends HBox {
             stage.setScene(scene);
         });
 
+        durationSlider = new Slider(100, 1500, 400); // min 100ms, max 1500ms, initial 400ms
+        durationSlider.setShowTickLabels(true);
+        durationSlider.setShowTickMarks(true);
+        durationSlider.setMajorTickUnit(100);
+        durationSlider.setBlockIncrement(50);
+        durationSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            AlgorithmAnimation currentAlgorithm = AlgorithmBox.getAlgorithm();
+            if (currentAlgorithm != null) {
+                animationDuration = Duration.millis(newVal.doubleValue());
+            }
+        });
+
+        playPause = new ToggleButton("Pause"); // Toggle button initialization
+        playPause.setDisable(true);
+        playPause.selectedProperty().addListener((obs, oldVal, newVal) -> {
+            isPaused = newVal; // Update isPaused according to the state of the toggle button
+            playPause.setText(newVal ? "Play" : "Pause"); // Switch button text between "Pause" and "Play"
+            if (!newVal) {
+                if (current != null) {
+                    current.continueTransition();
+                }
+            }
+        });
 
         // Create and add back button
         backButton = new Button("Back");
@@ -43,18 +74,28 @@ public class ButtonBox extends HBox {
         this.resetButton.getStyleClass().add("button");
         this.backButton.getStyleClass().add("button");
         this.removeBarsButton.getStyleClass().add("button");
+        playPause.getStyleClass().add("button");
+        this.durationSlider.getStyleClass().add("slider");
 
         resetButton.setSortButton(sortButton);
         sortButton.setResetButton(resetButton);
+        sortButton.setPlayPauseButton(playPause);
+        resetButton.setPlayPause(playPause);
 
         this.getChildren().add(sortButton);
         this.getChildren().add(resetButton);
         this.getChildren().add(removeBarsButton);
+        this.getChildren().add(playPause); // Add the toggle button to the children of ButtonBox
+        this.getChildren().add(durationSlider);
         this.getChildren().add(backButton);
     }
 
     private void clearContent() {
         this.getChildren().clear();
+    }
+
+    public void setCurrent(AlgorithmAnimation current) {
+        this.current = current;
     }
 
     private void reloadAlgorithmVisualizerMenu(FXMLLoader loader) {
@@ -66,5 +107,9 @@ public class ButtonBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setPlayPauseDisabled() {
+        playPause.setDisable(true);
     }
 }

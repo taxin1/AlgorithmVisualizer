@@ -14,23 +14,21 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.Queue;
 
 import static com.example.algorithmvisualizer.Utility.*;
 
 public class Controller {
 
-    public class UpdateQueueItem {
-        private int row;
-        private int column;
-        private int status;
+    public static class UpdateQueueItem {
+        private final int row;
+        private final int column;
+        private final int status;
 
         public UpdateQueueItem(int row, int column, int status) {
             this.row = row;

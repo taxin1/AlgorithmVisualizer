@@ -20,7 +20,7 @@
 .buttonbox{
     -fx-spacing: 5;
     -fx-min-height: 30;
-    -fx-padding: 10 0 0 0;
+    -fx-padding: 10 25 0 25;
 }
 
 .vbox{
@@ -32,9 +32,10 @@
 .vbox2{
     -fx-border-width: 0;
     -fx-alignment: center;
-    -fx-max-width: 120;
+    -fx-max-width: 150;
     -fx-font-family: "MesloLGL Nerd Font";
     -fx-font-weight: bold;
+    -fx-padding: 0 0 0 20;
 }
 
 .vbox3{
@@ -116,4 +117,10 @@
 /* Custom style for the slider thumb */
 .slider .thumb {
     -fx-background-color: #0077CC; /* Solid blue color */
+}
+
+.label {
+    -fx-font-family: "MesloLGL Nerd Font";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
 }

@@ -45,7 +45,7 @@ public class ButtonBox extends HBox {
 
         durationSlider = new Slider(100, 1500, 400); // min 100ms, max 1500ms, initial 400ms
         durationSlider.setShowTickLabels(false);
-        durationSlider.setShowTickMarks(true);
+        durationSlider.setShowTickMarks(false);
         durationSlider.setMajorTickUnit(100);
         durationSlider.setBlockIncrement(50);
         durationSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -56,7 +56,7 @@ public class ButtonBox extends HBox {
         });
 
         // Set preferred width to increase the length of the slider
-        durationSlider.setPrefWidth(300);
+        durationSlider.setPrefWidth(250);
 
         playPause = new ToggleButton("Pause"); // Toggle button initialization
         playPause.setDisable(true);

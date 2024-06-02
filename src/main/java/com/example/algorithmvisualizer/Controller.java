@@ -369,38 +369,46 @@ public class Controller {
 
     @FXML
     private void handledfsButtonClick() {
+        clearPath();
+        isReset = true;
         algorithm = "DFS";
         dfsButton.setStyle("-fx-background-color: #87CEFA;");
         bfsButton.setStyle("-fx-background-color:lightgrey;");
         dijkstraButton.setStyle("-fx-background-color:lightgrey;");
-        aStarButton.setStyle("-fx-background-color:lightgrey;");
+        //aStarButton.setStyle("-fx-background-color:lightgrey;");
     }
 
     @FXML
     private void handlebfsButtonClick() {
+        clearPath();
+        isReset = true;
         algorithm = "BFS";
         dfsButton.setStyle("-fx-background-color: lightgrey;");
         bfsButton.setStyle("-fx-background-color:#87CEFA;");
         dijkstraButton.setStyle("-fx-background-color:lightgrey;");
-        aStarButton.setStyle("-fx-background-color:lightgrey;");
+        //aStarButton.setStyle("-fx-background-color:lightgrey;");
     }
 
-    @FXML
-    private void handleaStarButtonClick() {
-        algorithm = "AStar";
-        dfsButton.setStyle("-fx-background-color: lightgrey;");
-        bfsButton.setStyle("-fx-background-color:lightgrey;");
-        dijkstraButton.setStyle("-fx-background-color:lightgrey;");
-        aStarButton.setStyle("-fx-background-color:#87CEFA;");
-    }
+//    @FXML
+//    private void handleaStarButtonClick() {
+//        clearPath();
+//        isReset = true;
+//        algorithm = "AStar";
+//        dfsButton.setStyle("-fx-background-color: lightgrey;");
+//        bfsButton.setStyle("-fx-background-color:lightgrey;");
+//        dijkstraButton.setStyle("-fx-background-color:lightgrey;");
+//        //aStarButton.setStyle("-fx-background-color:#87CEFA;");
+//    }
 
     @FXML
     private void handledijkstraButtonClick() {
+        clearPath();
+        isReset = true;
         algorithm = "Dijkstra";
         dfsButton.setStyle("-fx-background-color: lightgrey;");
         bfsButton.setStyle("-fx-background-color:lightgrey;");
         dijkstraButton.setStyle("-fx-background-color:#87CEFA;");
-        aStarButton.setStyle("-fx-background-color:lightgrey;");
+        //aStarButton.setStyle("-fx-background-color:lightgrey;");
     }
 }
 

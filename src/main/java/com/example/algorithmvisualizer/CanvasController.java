@@ -5,6 +5,7 @@ import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.*;
 import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -79,7 +79,7 @@ public class CanvasController implements Initializable, ChangeListener {
     @FXML
     private JFXNodesList nodeList;
     @FXML
-    private JFXSlider slider = new JFXSlider();
+    private Slider slider;
     @FXML
     private ImageView playPauseImage, openHidden;
 
@@ -107,6 +107,7 @@ public class CanvasController implements Initializable, ChangeListener {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        openHidden.setVisible(false);
 
         dButton.setSelected(directed);
         udButton.setSelected(undirected);
@@ -174,19 +175,19 @@ public class CanvasController implements Initializable, ChangeListener {
         });
 
         //Setup Slider
-        slider = new JFXSlider(10, 1000, 500);
-        slider.setPrefWidth(150);
-        slider.setPrefHeight(80);
-        slider.setSnapToTicks(true);
-        slider.setMinorTickCount(100);
-        slider.setIndicatorPosition(JFXSlider.IndicatorPosition.RIGHT);
-        slider.setBlendMode(BlendMode.MULTIPLY);
-        slider.setCursor(Cursor.CLOSED_HAND);
-        nodeList.addAnimatedNode(slider);
-        nodeList.setSpacing(50D);
-        nodeList.setRotate(270D);
-        slider.toFront();
-        nodeList.toFront();
+//        slider = new JFXSlider(10, 1000, 500);
+//        slider.setPrefWidth(150);
+//        slider.setPrefHeight(80);
+//        slider.setSnapToTicks(true);
+//        slider.setMinorTickCount(100);
+//        slider.setIndicatorPosition(JFXSlider.IndicatorPosition.RIGHT);
+//        slider.setBlendMode(BlendMode.MULTIPLY);
+//        slider.setCursor(Cursor.CLOSED_HAND);
+//        nodeList.addAnimatedNode(slider);
+//        nodeList.setSpacing(50D);
+//        nodeList.setRotate(270D);
+//        slider.toFront();
+//        nodeList.toFront();
         slider.valueProperty().addListener(this);
 
         hiddenRoot.setPrefWidth(220);
@@ -240,23 +241,15 @@ public class CanvasController implements Initializable, ChangeListener {
             }
         });
 
-        //Add Label and TextFlow to hiddenPane
         hiddenRoot.getChildren().addAll(pinUnpin, detailLabel, textContainer);
         hiddenPane.setRight(hiddenRoot);
-        hiddenRoot.setOnMouseEntered(e -> {
-            hiddenPane.setPinnedSide(Side.RIGHT);
-            openHidden.setVisible(false);
-            e.consume();
-        });
-        hiddenRoot.setOnMouseExited(e -> {
-            if (!pinned) {
-                hiddenPane.setPinnedSide(null);
-                openHidden.setVisible(true);
-            }
-            e.consume();
-        });
-        hiddenPane.setTriggerDistance(60);
 
+        // Consume MOUSE_ENTERED and MOUSE_EXITED events to disable hover effect
+        hiddenRoot.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_ENTERED, Event::consume);
+        hiddenRoot.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_EXITED, Event::consume);
+
+        // Set a very high trigger distance to prevent opening on hover
+        hiddenPane.setTriggerDistance(Double.MAX_VALUE);
     }
 
     @Override
@@ -507,16 +500,18 @@ public class CanvasController implements Initializable, ChangeListener {
         
         try{
             if (playing && st != null && st.getStatus() == Animation.Status.RUNNING) {
-                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png")));
-                playPauseImage.setImage(image);
+//                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png")));
+//                playPauseImage.setImage(image);
+                playPauseButton.setText("Play");
                 System.out.println("Pausing");
                 st.pause();
                 paused = true;
                 playing = false;
                 return;
             } else if (paused && st != null) {
-                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/pause_black_48x48.png")));
-                playPauseImage.setImage(image);
+//                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/pause_black_48x48.png")));
+//                playPauseImage.setImage(image);
+                playPauseButton.setText("Pause");
                 if(st.getStatus() == Animation.Status.PAUSED)
                     st.play();
                 else if(st.getStatus() == Animation.Status.STOPPED)
@@ -527,7 +522,7 @@ public class CanvasController implements Initializable, ChangeListener {
             }
         } catch(Exception e){
             System.out.println("Error while play/pause: " + e);
-            ClearHandle(null);
+            ClearHandle();
         }
     }
 
@@ -539,7 +534,7 @@ public class CanvasController implements Initializable, ChangeListener {
      */
     @FXML
     public void ResetHandle(ActionEvent event) {
-        ClearHandle(null);
+        ClearHandle();
         nNode = 0;
         canvasGroup.getChildren().clear();
         canvasGroup.getChildren().addAll(viewer);
@@ -558,8 +553,9 @@ public class CanvasController implements Initializable, ChangeListener {
         addNodeButton.setDisable(false);
         clearButton.setDisable(true);
         algo = new Algorithm();
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/pause_black_48x48.png")));
-        playPauseImage.setImage(image);
+//        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/pause_black_48x48.png")));
+//        playPauseImage.setImage(image);
+        playPauseButton.setText("Pause");
         hiddenPane.setPinnedSide(null);
 
         bfsButton.setDisable(true);
@@ -579,10 +575,9 @@ public class CanvasController implements Initializable, ChangeListener {
      * Event handler for the Clear button. Re-initiates the distance and node
      * values and labels.
      *
-     * @param event
      */
     @FXML
-    public void ClearHandle(ActionEvent event) {
+    public void ClearHandle() {
         if(st != null && st.getStatus() != Animation.Status.STOPPED)
             st.stop();
         if(st != null) st.getChildren().clear();
@@ -627,8 +622,9 @@ public class CanvasController implements Initializable, ChangeListener {
         }
         textFlow.clear();
 
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/pause_black_48x48.png")));
-        playPauseImage.setImage(image);
+//        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/pause_black_48x48.png")));
+//        playPauseImage.setImage(image);
+        playPauseButton.setText("Pause");
 
         distances = new ArrayList<>();
         visitTime = new ArrayList<>();
@@ -702,6 +698,9 @@ public class CanvasController implements Initializable, ChangeListener {
 
     @FXML
     public void BFSHandle(ActionEvent event) {
+        if(!clearButton.isDisable())
+            ClearHandle();
+
         addNode = false;
         addEdge = false;
         addNodeButton.setSelected(false);
@@ -715,10 +714,18 @@ public class CanvasController implements Initializable, ChangeListener {
         dijkstra = false;
         mst = false;
         articulationPoint = false;
+
+        dfsButton.setSelected(false);
+        bfsButton.setSelected(true);
+        dijkstraButton.setSelected(false);
+        mstButton.setSelected(false);
     }
 
     @FXML
     public void DFSHandle(ActionEvent event) {
+        if(!clearButton.isDisable())
+            ClearHandle();
+
         addNode = false;
         addEdge = false;
         addNodeButton.setSelected(false);
@@ -732,10 +739,18 @@ public class CanvasController implements Initializable, ChangeListener {
         dijkstra = false;
         mst = false;
         articulationPoint = false;
+
+        dfsButton.setSelected(true);
+        bfsButton.setSelected(false);
+        dijkstraButton.setSelected(false);
+        mstButton.setSelected(false);
     }
 
     @FXML
     public void DijkstraHandle(ActionEvent event) {
+        if(!clearButton.isDisable())
+            ClearHandle();
+
         addNode = false;
         addEdge = false;
         addNodeButton.setSelected(false);
@@ -749,10 +764,18 @@ public class CanvasController implements Initializable, ChangeListener {
         dijkstra = true;
         mst = false;
         articulationPoint = false;
+
+        dfsButton.setSelected(false);
+        bfsButton.setSelected(false);
+        dijkstraButton.setSelected(true);
+        mstButton.setSelected(false);
     }
 
     @FXML
     public void MSTHandle(ActionEvent event) {
+        if(!clearButton.isDisable())
+            ClearHandle();
+
         addNode = false;
         addEdge = false;
         addNodeButton.setSelected(false);
@@ -767,6 +790,11 @@ public class CanvasController implements Initializable, ChangeListener {
         articulationPoint = false;
         mst = true;
         algo.newMST();
+
+        dfsButton.setSelected(false);
+        bfsButton.setSelected(false);
+        dijkstraButton.setSelected(false);
+        mstButton.setSelected(true);
     }
 
     /**
@@ -1132,8 +1160,9 @@ public class CanvasController implements Initializable, ChangeListener {
                     FillTransition ft1 = new FillTransition(Duration.millis(time), source.circle);
                     ft1.setToValue(Color.RED);
                     ft1.play();
-                    Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png")));
-                    playPauseImage.setImage(image);
+//                    Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png")));
+//                    playPauseImage.setImage(image);
+                    playPauseButton.setText("Play");
                     paused = true;
                     playing = false;
                     textFlow.appendText("---Finished--\n");
@@ -1263,8 +1292,9 @@ public class CanvasController implements Initializable, ChangeListener {
                     FillTransition ft1 = new FillTransition(Duration.millis(time), source.circle);
                     ft1.setToValue(Color.RED);
                     ft1.play();
-                    Image image = new Image(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png"));
-                    playPauseImage.setImage(image);
+//                    Image image = new Image(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png"));
+//                    playPauseImage.setImage(image);
+                    playPauseButton.setText("Play");
                     paused = true;
                     playing = false;
                     textFlow.appendText("---Finished--\n");
@@ -1443,8 +1473,9 @@ public class CanvasController implements Initializable, ChangeListener {
 
                 //<editor-fold defaultstate="collapsed" desc="Animation after algorithm is finished">
                 st.setOnFinished(ev -> {
-                    Image image = new Image(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png"));
-                    playPauseImage.setImage(image);
+//                    Image image = new Image(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png"));
+//                    playPauseImage.setImage(image);
+                    playPauseButton.setText("Play");
                     paused = true;
                     playing = false;
                     textFlow.appendText("Minimum Cost of the Graph " + mstValue);
@@ -1504,8 +1535,9 @@ public class CanvasController implements Initializable, ChangeListener {
                     FillTransition ft1 = new FillTransition(Duration.millis(time), source.circle);
                     ft1.setToValue(Color.RED);
                     ft1.play();
-                    Image image = new Image(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png"));
-                    playPauseImage.setImage(image);
+//                    Image image = new Image(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png"));
+//                    playPauseImage.setImage(image);
+                    playPauseButton.setText("Play");
                     paused = true;
                     playing = false;
                     textFlow.appendText("---Finished--\n");

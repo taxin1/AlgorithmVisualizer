@@ -36,10 +36,10 @@ public class RightClickMenu {
         this();
         sourceNode = node;
         delete.setOnAction(e -> {
-            Panel1Controller.cref.deleteNode(sourceNode);
+            AlgorithmVisualizerMenuController.cref.deleteNode(sourceNode);
         });
         changeId.setOnAction(e -> {
-            Panel1Controller.cref.changeID(node);
+            AlgorithmVisualizerMenuController.cref.changeID(node);
         });
     }
 

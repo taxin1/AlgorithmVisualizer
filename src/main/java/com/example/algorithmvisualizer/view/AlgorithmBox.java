@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 public class AlgorithmBox extends VBox {
     private static final double PREFERRED_WIDTH = 600;
     // Buttons for each sorting algorithm
-    private final Label titleLabel = new Label("Selected\nAlgorithm");
+    private final Label titleLabel = new Label("Algorithm");
     private final Button bubbleSortButton = new Button("Bubble");
     private final Button selectionSortButton = new Button("Selection");
     private final Button insertionSortButton = new Button("Insertion");
@@ -48,6 +48,7 @@ public class AlgorithmBox extends VBox {
     }
 
     private void initializeButtons(FieldBox fieldBox, DescriptionBox descriptionBox) {
+        titleLabel.getStyleClass().add("label");
         getChildren().add(titleLabel);
 
         double buttonWidth = 120;

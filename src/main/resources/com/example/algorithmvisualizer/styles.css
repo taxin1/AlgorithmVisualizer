@@ -69,8 +69,6 @@
     -fx-background-color: lightgrey;
     -fx-background-radius: 40;
     -fx-border-radius: 40;
-    /*-fx-border-color: #000000;*/
-    /*-fx-border-width: 2px;*/
     -fx-text-fill: #000000;
     -fx-font-size: 15px;
     -fx-font-family: "MesloLGL Nerd Font";
@@ -81,8 +79,8 @@
     -fx-background-color: rgba(204, 204, 204, 0.5);
     -fx-text-fill: #000000;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 0); /* Add shadow on hover */
-    -fx-scale-x: 1.05; /* Slightly increase size */
-    -fx-scale-y: 1.05; /* Slightly increase size */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 
 .button:disabled{
@@ -92,7 +90,7 @@
 }
 
 .button:selected{
-    -fx-background-color: lightgreen;
+    -fx-background-color: #87CEFA;
     -fx-text-fill: white;
 }
 
@@ -108,19 +106,23 @@
     -fx-pref-height: 400;
 }
 
-/* New rule to hide the speed labels */
 .speed-label {
-    -fx-opacity: 0; /* Makes the label invisible */
-    -fx-max-height: 0; /* Removes the space it takes */
+    -fx-opacity: 0;
+    -fx-max-height: 0;
 }
 
-/* Custom style for the slider thumb */
 .slider .thumb {
-    -fx-background-color: #0077CC; /* Solid blue color */
+    -fx-background-color: #0077CC;
+}
+
+.titlelabel {
+    -fx-font-family: "MesloLGL Nerd Font";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
 }
 
 .label {
     -fx-font-family: "MesloLGL Nerd Font";
-    -fx-font-size: 18px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
 }

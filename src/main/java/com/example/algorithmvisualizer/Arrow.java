@@ -6,13 +6,9 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
-public class Arrow extends Path {
+public class Arrow extends Path{
     private static final double defaultArrowHeadSize = 7;
-    private final double startX;
-    private final double startY;
-    private final double endX;
-    private final double endY;
-
+    private double startX, startY, endX, endY;
     public Arrow(double startX, double startY, double endX, double endY, double arrowHeadSize) {
         super();
 
@@ -37,8 +33,8 @@ public class Arrow extends Path {
         getElements().add(new LineTo(x2, y2));
         getElements().add(new LineTo(endX, endY));
     }
-
-    public Arrow(double startX, double startY, double endX, double endY) {
+    
+    public Arrow(double startX, double startY, double endX, double endY){
         this(startX, startY, endX, endY, defaultArrowHeadSize);
     }
 }

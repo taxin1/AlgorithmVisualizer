@@ -7,11 +7,11 @@
 
 <AnchorPane fx:id="mainAnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.algorithmvisualizer.AlgorithmVisualizerMenuController">
    <children>
-      <Button alignment="CENTER" layoutX="578.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleGraphButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="GRAPH" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="578.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleGraphButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="GRAPH" textAlignment="CENTER">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font></Button>
-      <Button alignment="CENTER" layoutX="578.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleSearchingButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="PATHFINDING" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="578.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleSearchingButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="PATHFINDING" textAlignment="CENTER">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font>

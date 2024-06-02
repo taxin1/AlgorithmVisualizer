@@ -1,7 +1,6 @@
 package com.example.algorithmvisualizer;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXNodesList;
+import com.jfoenix.controls.*;
 import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -258,7 +257,7 @@ public class CanvasController implements Initializable, ChangeListener {
 
             if (!ev.getSource().equals(canvasGroup)) {
                 if (ev.getEventType() == MouseEvent.MOUSE_RELEASED && ev.getButton() == MouseButton.PRIMARY) {
-                    if (menuBool) {
+                    if (menuBool == true) {
                         System.out.println("here" + ev.getEventType());
                         menuBool = false;
                         return;
@@ -367,7 +366,7 @@ public class CanvasController implements Initializable, ChangeListener {
                             line_arrow.setOnContextMenuRequested(e -> {
                                 System.out.println("In Edge Menu :" + menuBool);
 
-                                if (menuBool) {
+                                if (menuBool == true) {
                                     globalMenu.hide();
                                     menuBool = false;
                                 }
@@ -447,6 +446,7 @@ public class CanvasController implements Initializable, ChangeListener {
                 st.pause();
                 paused = true;
                 playing = false;
+                return;
             } else if (paused && st != null) {
                 playPauseButton.setText("Pause");
                 if (st.getStatus() == Animation.Status.PAUSED)
@@ -455,6 +455,7 @@ public class CanvasController implements Initializable, ChangeListener {
                     st.playFromStart();
                 playing = true;
                 paused = false;
+                return;
             }
         } catch (Exception e) {
             System.out.println("Error while play/pause: " + e);
@@ -613,7 +614,7 @@ public class CanvasController implements Initializable, ChangeListener {
 
     @FXML
     public void BFSHandle(ActionEvent event) {
-        if (!clearButton.isDisable())
+        if(!clearButton.isDisable())
             ClearHandle();
 
         addNode = false;
@@ -638,7 +639,7 @@ public class CanvasController implements Initializable, ChangeListener {
 
     @FXML
     public void DFSHandle(ActionEvent event) {
-        if (!clearButton.isDisable())
+        if(!clearButton.isDisable())
             ClearHandle();
 
         addNode = false;
@@ -663,7 +664,7 @@ public class CanvasController implements Initializable, ChangeListener {
 
     @FXML
     public void DijkstraHandle(ActionEvent event) {
-        if (!clearButton.isDisable())
+        if(!clearButton.isDisable())
             ClearHandle();
 
         addNode = false;
@@ -688,7 +689,7 @@ public class CanvasController implements Initializable, ChangeListener {
 
     @FXML
     public void MSTHandle(ActionEvent event) {
-        if (!clearButton.isDisable())
+        if(!clearButton.isDisable())
             ClearHandle();
 
         addNode = false;
@@ -1227,7 +1228,7 @@ public class CanvasController implements Initializable, ChangeListener {
                     StrokeTransition ft1 = new StrokeTransition(Duration.millis(time), e.line);
                     ft1.setToValue(Color.DARKORANGE);
                     st.getChildren().add(ft1);
-                    final String se = "Selected Edge:- (" + e.source.name.trim() + "--" + e.target.name.trim() + ") Weight: " + e.weight + " \n";
+                    final String se = "Selected Edge:- (" + e.source.name.trim() + "--" + e.target.name.trim() + ") Weight: " + String.valueOf(e.weight) + " \n";
                     FadeTransition fdx = new FadeTransition(Duration.millis(10), textFlow);
                     fdx.setOnFinished(evx -> {
                         textFlow.appendText(se);

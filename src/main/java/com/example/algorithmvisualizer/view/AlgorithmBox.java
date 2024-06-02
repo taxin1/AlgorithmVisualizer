@@ -43,7 +43,7 @@ public class AlgorithmBox extends VBox {
     }
 
     private void initializeButtons(FieldBox fieldBox, DescriptionBox descriptionBox) {
-        titleLabel.getStyleClass().add("label");
+        titleLabel.getStyleClass().add("titlelabel");
         getChildren().add(titleLabel);
 
         double buttonWidth = 120;

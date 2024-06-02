@@ -33,3 +33,14 @@ git clone https://github.com/taxin1/AlgorithmVisualizer.git
 ![Main Screen](screenshots/pathfinding1.png)
 ### Path Finding - Maze Solved
 ![Main Screen](screenshots/pathfinding2.png)
+
+## Acknowledgements
+This is made as the final project for CSE 4402: Visual Programming Lab.
+
+**Team publicStaticVoidMain**
+
+[Tahsin Bin Reza | 210041106](https://github.com/taxin1)
+
+[Rafiul Arefeen Islam | 210041114](https://github.com/rafiul-arefeen)
+
+[Adib Ahmed | 210041122](https://github.com/AdibOmi)

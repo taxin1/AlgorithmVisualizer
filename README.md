@@ -1,4 +1,4 @@
-# AlgoWiz: Algorithm Visualizer
+![AlgoWiz](screenshots/logo.png)
 
 ## Overview
 Algorithm Visualizer is a JavaFX application designed to visualize various algorithms to aid in understanding their inner workings. This project provides a visual representation of algorithms such as sorting, path finding and graph traversal. With interactive animations and step-by-step execution, users can observe how algorithms operate in real-time.

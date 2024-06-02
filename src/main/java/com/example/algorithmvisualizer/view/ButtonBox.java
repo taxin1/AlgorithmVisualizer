@@ -1,5 +1,6 @@
 package com.example.algorithmvisualizer.view;
 
+import com.example.algorithmvisualizer.AlgorithmVisualizerMenuController;
 import com.example.algorithmvisualizer.SortAlgorithms.AlgorithmAnimation;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -126,6 +127,8 @@ public class ButtonBox extends HBox {
             AnchorPane algorithmVisualizerMenu = loader.load();
             Scene newScene = new Scene(algorithmVisualizerMenu);
             Stage stage = (Stage) this.getScene().getWindow();
+            AlgorithmVisualizerMenuController controller = loader.getController();
+            controller.setPrimaryScene(newScene);
             stage.setScene(newScene);
         } catch (IOException e) {
             e.printStackTrace();

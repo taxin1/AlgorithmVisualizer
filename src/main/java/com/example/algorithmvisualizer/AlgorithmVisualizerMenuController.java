@@ -17,6 +17,7 @@ public class AlgorithmVisualizerMenuController {
     @FXML
     private AnchorPane mainAnchorPane;
     private Scene primaryScene;
+    public static Stage primaryStage;
 
     public void setPrimaryScene(Scene scene) {
         this.primaryScene = scene;
@@ -34,7 +35,7 @@ public class AlgorithmVisualizerMenuController {
     }
 
     @FXML
-    private void handleSortingButtonClick(ActionEvent event) {
+    private void handleSortingButtonClick() {
         if (mainAnchorPane == null) {
             System.err.println("Main anchor pane is null.");
             return;
@@ -54,7 +55,7 @@ public class AlgorithmVisualizerMenuController {
     }
 
     @FXML
-    private void handleSearchingButtonClick(ActionEvent event) {
+    private void handleSearchingButtonClick() {
         if (mainAnchorPane == null) {
             System.err.println("Main anchor pane is null.");
             return;
@@ -72,8 +73,21 @@ public class AlgorithmVisualizerMenuController {
     }
 
     @FXML
-    private void handleGraphButtonClick(ActionEvent event) {
-        System.out.println("Graph Algorithms button clicked!");
+    private void handleGraphButtonClick() {
+        if (mainAnchorPane == null) {
+            System.err.println("Main anchor pane is null.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Panel1FXML.fxml"));
+            Parent pathfindingRoot = loader.load();
+            Scene currentScene = mainAnchorPane.getScene();
+            currentScene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("Styling.css")).toExternalForm());
+            currentScene.setRoot(pathfindingRoot);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -273,15 +273,6 @@ public class Controller {
             dragLock = false;
         };
 
-        EventHandler<MouseEvent> algorithmClickHandler = event -> {
-            if (algoBtn != null)
-                algoBtn.setStyle("-fx-background-color: white; -fx-text-fill: black");
-            algoBtn = (Button)event.getSource();
-            algoBtn.setStyle("-fx-background-color: black; -fx-text-fill: red");
-            algorithm = algoBtn.getId();
-            System.out.println(algorithm);
-        };
-
         EventHandler<MouseEvent> resetClickHandler = event -> {
             if (!lock) {
                 Button btn = (Button) event.getSource();
@@ -363,7 +354,9 @@ public class Controller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/algorithmvisualizer/Menu.fxml"));
             Parent menuRoot = loader.load();
+            AlgorithmVisualizerMenuController controller = loader.getController();
             Scene scene = backButton.getScene();
+            controller.setPrimaryScene(scene);
             if (scene == null) {
                 System.out.println("Scene is null. Cannot set root.");
             } else {

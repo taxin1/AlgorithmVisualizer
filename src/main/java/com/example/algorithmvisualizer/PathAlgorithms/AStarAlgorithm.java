@@ -1,11 +1,11 @@
 package com.example.algorithmvisualizer.PathAlgorithms;
 
-import com.example.algorithmvisualizer.Controller;
-
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+import com.example.algorithmvisualizer.Controller;
 import static com.example.algorithmvisualizer.Utility.*;
+import static com.example.algorithmvisualizer.Utility.FOUND_NODE;
 
 public class AStarAlgorithm {
 
@@ -209,14 +209,14 @@ public class AStarAlgorithm {
             int updatedColumn = column + columnDir[i];
             // check boundaries
             if (updatedRow >= 0 && updatedRow < DIM && updatedColumn >= 0 && updatedColumn < DIM
-                && !processed[updatedRow][updatedColumn]
-                && distancesToTarget[updatedRow][updatedColumn] != -1) {
+                    && !processed[updatedRow][updatedColumn]
+                    && distancesToTarget[updatedRow][updatedColumn] != -1) {
 
                 // first create the QueueItem to compare later or add
                 QueueItem pendingItem = new QueueItem(
-                    updatedRow + ", " + updatedColumn,
-                    calculateDistance(updatedRow, updatedColumn, item) + item.getDistance(),
-                    distancesToTarget[updatedRow][updatedColumn]
+                        updatedRow + ", " + updatedColumn,
+                        calculateDistance(updatedRow, updatedColumn, item) + item.getDistance(),
+                        distancesToTarget[updatedRow][updatedColumn]
                 );
 
                 // check if node is already in the pQueue and compare heuristic distances if so

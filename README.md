@@ -16,8 +16,10 @@ Algorithm Visualizer is a JavaFX application designed to visualize various algor
 git clone https://github.com/taxin1/AlgorithmVisualizer.git
 ```
 2. Open it in your preferred IDE and setup JavaFX.
-3. Then add the following JAR files to your dependencies. If your're using IntelliJ then navigate to `File > Project Structure > Project Settings > Modules > Dependencies`. Then add the JARs under `Dependencies`.
+3. Then add the following JAR files to your dependencies. They can be found under the folders `jar_files`, `jar_files_2` and `jar_files_3`. If your're using IntelliJ then navigate to `File > Project Structure > Project Settings > Modules > Dependencies`. Then add the JARs under `Dependencies`.
   - `controlsfx-11.2.1.jar`
   - `jfoenix-21.0.0.jar`
   - `jfxtras-common-17-r1.jar`
 4. Run `AlgorithmVisualizerMenu.java`.
+
+## Screenshots

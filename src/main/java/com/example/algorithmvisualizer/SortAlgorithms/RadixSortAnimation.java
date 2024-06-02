@@ -1,17 +1,17 @@
 package com.example.algorithmvisualizer.SortAlgorithms;
 
 import com.example.algorithmvisualizer.view.MainWindow;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class RadixSortAnimation extends AlgorithmAnimation {
-    private int[][] stackPanes;
+    private int[][] VBoxs;
 
     @Override
     public void startSort(int[] arr) {
-        stackPanes = new int[arr.length][2];
+        VBoxs = new int[arr.length][2];
         for (int i = 0; i < arr.length; i++) {
-            stackPanes[i] = new int[]{arr[i], i};
+            VBoxs[i] = new int[]{arr[i], i};
         }
 
         int n = arr.length;
@@ -64,7 +64,7 @@ public class RadixSortAnimation extends AlgorithmAnimation {
     private int getBarIndex(int value, int occurrence) {
         int occurrenceCount = 0;
         for (int index = 0; index < spOrder.length; index++) {
-            StackPane bar = (StackPane) MainWindow.chartPane.getChildren().get(index);
+            VBox bar = (VBox) MainWindow.chartPane.getChildren().get(index);
             if (Integer.parseInt(((Text) bar.getChildren().get(1)).getText()) == value) {
                 if (occurrenceCount == occurrence) {
                     return index;
@@ -83,13 +83,13 @@ public class RadixSortAnimation extends AlgorithmAnimation {
 
         // Find the correct fromLoc considering duplicates
         int occurrence = 0;
-        for (int i = 0; i < stackPanes.length; i++) {
-            if (stackPanes[i][0] == currentTransition[1]) {
-                if (stackPanes[i][1] == toLoc) {
+        for (int i = 0; i < VBoxs.length; i++) {
+            if (VBoxs[i][0] == currentTransition[1]) {
+                if (VBoxs[i][1] == toLoc) {
                     occurrence++;
                 } else {
-                    fromLoc = stackPanes[i][1];
-                    stackPanes[i][1] = toLoc;
+                    fromLoc = VBoxs[i][1];
+                    VBoxs[i][1] = toLoc;
                     break;
                 }
             }
@@ -108,7 +108,7 @@ public class RadixSortAnimation extends AlgorithmAnimation {
             System.err.println("Error: Bar not found for value " + currentTransition[1] + " with occurrence " + occurrence);
             return;
         }
-        StackPane movedBar = (StackPane) MainWindow.chartPane.getChildren().get(barIndex);
+        VBox movedBar = (VBox) MainWindow.chartPane.getChildren().get(barIndex);
         addTranslateTransition(variance, movedBar, 1);
     }
 }

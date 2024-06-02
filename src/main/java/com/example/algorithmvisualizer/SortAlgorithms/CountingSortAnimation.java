@@ -1,7 +1,7 @@
 package com.example.algorithmvisualizer.SortAlgorithms;
 
 import com.example.algorithmvisualizer.view.MainWindow;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class CountingSortAnimation extends AlgorithmAnimation {
@@ -33,7 +33,7 @@ public class CountingSortAnimation extends AlgorithmAnimation {
     private int getBarIndex(int value){
         for(int index = 0; index < spOrder.length ; index++){
             if(spOrder[index] != -1) {
-                StackPane bar = (StackPane) MainWindow.chartPane.getChildren().get(index);
+                VBox bar = (VBox) MainWindow.chartPane.getChildren().get(index);
                 if (Integer.parseInt(((Text) bar.getChildren().get(1)).getText()) == value) {
                     spOrder[index] = -1;
                     return index;
@@ -49,7 +49,7 @@ public class CountingSortAnimation extends AlgorithmAnimation {
         fromLoc = getBarIndex(currentTransition[1]);
         variance = toLoc - fromLoc;
 
-        StackPane movedBar = (StackPane) MainWindow.chartPane.getChildren().get(fromLoc);
+        VBox movedBar = (VBox) MainWindow.chartPane.getChildren().get(fromLoc);
         addTranslateTransition(variance, movedBar, 1);
     }
 }

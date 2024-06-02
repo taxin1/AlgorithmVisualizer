@@ -1,13 +1,13 @@
 package com.example.algorithmvisualizer.SortAlgorithms;
 
 import com.example.algorithmvisualizer.view.MainWindow;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MergeSortAnimation extends AlgorithmAnimation {
-    private int[][] stackPanes;
+    private int[][] VBoxs;
     @Override
     public void startSort(int[] arr) {
         sort(arr, 0, arr.length);
@@ -15,7 +15,7 @@ public class MergeSortAnimation extends AlgorithmAnimation {
 
     private void sort(int[] arr, int start, int end){
 
-        stackPanes = new int[arr.length][2];
+        VBoxs = new int[arr.length][2];
         if(end - start < 2){
             return;
         }
@@ -60,15 +60,15 @@ public class MergeSortAnimation extends AlgorithmAnimation {
     }
     @Override
     void initializeSPOrder(){
-        for(int i = 0; i < stackPanes.length; i++){
+        for(int i = 0; i < VBoxs.length; i++){
             //initialize bar locations - {barIdx, barLoc}
-            stackPanes[i] = new int[]{i, i};
+            VBoxs[i] = new int[]{i, i};
         }
     }
     private int getBarLoc(int loc){
         List<int[]> matches = new ArrayList<>();
         int[] max;
-        for(int[] arr : stackPanes){
+        for(int[] arr : VBoxs){
             if(arr[1] == loc){
                 matches.add(arr);
             }
@@ -85,7 +85,7 @@ public class MergeSortAnimation extends AlgorithmAnimation {
         return max[0];
     }
     private int getBarValue(int idx){
-        StackPane sp = (StackPane) MainWindow.chartPane.getChildren().get(idx);
+        VBox sp = (VBox) MainWindow.chartPane.getChildren().get(idx);
         Text txt = (Text) sp.getChildren().get(1);
         return Integer.parseInt(txt.getText());
     }
@@ -99,10 +99,10 @@ public class MergeSortAnimation extends AlgorithmAnimation {
         variance = fromLoc - toLoc;
         if(variance != 0) {
             int idx = getBarLoc(fromLoc);
-            StackPane movedBar = (StackPane) MainWindow.chartPane.getChildren().get(idx);
+            VBox movedBar = (VBox) MainWindow.chartPane.getChildren().get(idx);
 
             addTranslateTransition(-variance, movedBar, 1);
-            stackPanes[idx][1] = toLoc;
+            VBoxs[idx][1] = toLoc;
         }
     }
 

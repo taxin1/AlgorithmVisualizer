@@ -7,41 +7,41 @@
 
 <AnchorPane fx:id="mainAnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.algorithmvisualizer.AlgorithmVisualizerMenuController">
    <children>
-      <Button alignment="CENTER" layoutX="577.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleGraphButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="GRAPH" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="578.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleGraphButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="GRAPH" textAlignment="CENTER">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font></Button>
-      <Button alignment="CENTER" layoutX="577.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleSearchingButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="PATHFINDING" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="578.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleSearchingButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="PATHFINDING" textAlignment="CENTER">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="577.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleSortingButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="SORTING" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="578.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleSortingButtonClick" prefHeight="59.0" prefWidth="141.0" stylesheets="@menuButtonStyle.css" text="SORTING" textAlignment="CENTER">
          <font>
             <Font name="MesloLGM Nerd Font Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="139.0" layoutY="252.0" text="AlgoWiz" textFill="WHITE">
+      <Label layoutX="139.0" layoutY="250.0" text="AlgoWiz" textFill="WHITE">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="58.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="577.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleCloseButtonClick" prefHeight="35.0" prefWidth="141.0" style="-fx-background-color: lightcoral;" stylesheets="@menuButtonStyle.css" text="CLOSE">
+      <Button alignment="CENTER" layoutX="578.0" layoutY="373.0" mnemonicParsing="false" onAction="#handleCloseButtonClick" prefHeight="59.0" prefWidth="141.0" style="-fx-background-color: lightcoral;" stylesheets="@menuButtonStyle.css" text="CLOSE">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="139.0" layoutY="307.0" text="&lt;/&gt;" textFill="WHITE">
+      <Label layoutX="139.0" layoutY="305.0" text="&lt;/&gt;" textFill="WHITE">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="58.0" />
          </font>
       </Label>
-      <Label layoutX="139.0" layoutY="192.0" text="&lt;&gt;" textFill="WHITE">
+      <Label layoutX="139.0" layoutY="190.0" text="&lt;&gt;" textFill="WHITE">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="58.0" />
          </font>
       </Label>
-      <Label layoutX="139.0" layoutY="386.0" text="Algorithm Visualizer" textFill="WHITE">
+      <Label layoutX="139.0" layoutY="383.0" text="Algorithm Visualizer" textFill="WHITE">
          <font>
             <Font name="MesloLGL Nerd Font Regular" size="17.0" />
          </font>

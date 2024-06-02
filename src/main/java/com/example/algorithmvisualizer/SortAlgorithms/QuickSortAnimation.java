@@ -1,7 +1,7 @@
 package com.example.algorithmvisualizer.SortAlgorithms;
 
 import com.example.algorithmvisualizer.view.MainWindow;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,15 +53,15 @@ public class QuickSortAnimation extends AlgorithmAnimation {
 
     private void addTransition(int to, int from, int start, boolean pivot){
         int variance;
-        StackPane movedBar;
+        VBox movedBar;
 
         if(pivot){
             variance = start - to;
-            movedBar = (StackPane) MainWindow.chartPane.getChildren().get(from);
+            movedBar = (VBox) MainWindow.chartPane.getChildren().get(from);
             spOrder[to] = from;
         }else{
             variance = from - to;
-            movedBar = (StackPane) MainWindow.chartPane.getChildren().get(spOrder[from]);
+            movedBar = (VBox) MainWindow.chartPane.getChildren().get(spOrder[from]);
             spOrder[to] = spOrder[from];
         }
 

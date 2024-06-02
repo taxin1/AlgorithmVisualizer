@@ -3,7 +3,9 @@ package com.example.algorithmvisualizer.SortAlgorithms;
 import com.example.algorithmvisualizer.view.ButtonBox;
 import com.example.algorithmvisualizer.view.MainWindow;
 import javafx.animation.TranslateTransition;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -45,8 +47,8 @@ public abstract class AlgorithmAnimation {
         if (isVariance) variance = fromLoc - toLoc;
         else variance = 1;
 
-        StackPane firstBar = (StackPane) MainWindow.chartPane.getChildren().get(spOrder[toLoc]);
-        StackPane secondBar = (StackPane) MainWindow.chartPane.getChildren().get(spOrder[fromLoc]);
+        VBox firstBar = (VBox) MainWindow.chartPane.getChildren().get(spOrder[toLoc]);
+        VBox secondBar = (VBox) MainWindow.chartPane.getChildren().get(spOrder[fromLoc]);
 
         addTranslateTransition(variance, firstBar, 1);
         addTranslateTransition(variance, secondBar, -1);
@@ -54,7 +56,7 @@ public abstract class AlgorithmAnimation {
         swap(spOrder, toLoc, fromLoc);
     }
 
-    final void addTranslateTransition(int variance, StackPane bar, int direction) {
+    final void addTranslateTransition(int variance, VBox bar, int direction) {
         TranslateTransition tt = new TranslateTransition(transitionDuration, bar);
         tt.setByX(25 * variance * direction);
         tt.setAutoReverse(false);
@@ -86,6 +88,16 @@ public abstract class AlgorithmAnimation {
         }
         if (currentTransitionIndex >= transitionList.size()) {
             ButtonBox.setPlayPauseDisabled();
+            setRectanglesToGreen();
+            ButtonBox.setPlayPauseDisabled();
+        }
+    }
+
+    private void setRectanglesToGreen() {
+        for (int i = 0; i < spSize; i++) {
+            VBox bar = (VBox) MainWindow.chartPane.getChildren().get(i);
+            Rectangle rect = (Rectangle) bar.getChildren().get(0); // Assuming rectangle is the first child
+            rect.setFill(Color.LIGHTGREEN);
         }
     }
 

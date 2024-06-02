@@ -65,11 +65,11 @@
 }
 
 .button {
-    -fx-background-color: transparent;
+    -fx-background-color: lightgrey;
     -fx-background-radius: 40;
     -fx-border-radius: 40;
-    -fx-border-color: #000000;
-    -fx-border-width: 2px;
+    /*-fx-border-color: #000000;*/
+    /*-fx-border-width: 2px;*/
     -fx-text-fill: #000000;
     -fx-font-size: 15px;
     -fx-font-family: "MesloLGL Nerd Font";

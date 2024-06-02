@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,21 +14,27 @@
 
 <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.algorithmvisualizer.Controller">
    <children>
-      <HBox>
+      <HBox alignment="CENTER">
          <VBox.margin>
-            <Insets bottom="10.0" />
+            <Insets bottom="20.0" />
          </VBox.margin>
          <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="142.0" spacing="10.0">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="500.0" prefWidth="120.0" spacing="5.0">
                <children>
-                  <Label prefHeight="33.0" prefWidth="99.0" text="Select Algorithm:" />
-                  <ListView fx:id="algorithmListView" prefHeight="200.0" prefWidth="200.0" />
+                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="99.0" text="Algorithm">
+                     <font>
+                        <Font name="MesloLGL Nerd Font Bold" size="13.0" />
+                     </font></Label>
+                  <Button fx:id="bfsButton" mnemonicParsing="false" onAction="#handlebfsButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@styles.css" text="BFS" />
+                  <Button fx:id="dfsButton" mnemonicParsing="false" onAction="#handledfsButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@styles.css" text="DFS" />
+                  <Button fx:id="dijkstraButton" mnemonicParsing="false" onAction="#handledijkstraButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@styles.css" text="Dijkstra" />
+                  <Button fx:id="aStarButton" mnemonicParsing="false" onAction="#handleaStarButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@styles.css" text="A-Star" />
                </children>
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets />
                </HBox.margin>
             </VBox>
-            <GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true">
+            <GridPane fx:id="gridPane" alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="10.0" prefWidth="25.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="10.0" prefWidth="25.0" />
@@ -497,29 +502,34 @@
                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="25.0" GridPane.columnIndex="19" GridPane.rowIndex="19" />
                </children>
                <HBox.margin>
-                  <Insets left="40.0" />
+                  <Insets left="40.0" right="40.0" />
                </HBox.margin>
             </GridPane>
+            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="120.0" spacing="10.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="902.0" spacing="5.0">
          <children>
-            <Button fx:id="run" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="70.0" stylesheets="@styles.css" text="Run">
+            <Button fx:id="run" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="70.0" style="-fx-background-color: lightgreen;" stylesheets="@styles.css" text="Run">
                <font>
                   <Font name="Verdana Bold" size="14.0" />
                </font>
             </Button>
-             <Button fx:id="resetPath" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="116.0" stylesheets="@styles.css" text="Reset Path">
+             <Button fx:id="resetPath" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="116.0" style="-fx-background-color: yellow;" stylesheets="@styles.css" text="Reset Path">
                  <font>
                      <Font name="Verdana" size="12.0" />
                  </font>
              </Button>
-            <Button fx:id="resetObstacles" mnemonicParsing="false" prefHeight="39.0" prefWidth="160.0" stylesheets="@styles.css" text="Reset Obstacles">
+            <Button fx:id="resetObstacles" mnemonicParsing="false" prefHeight="39.0" prefWidth="160.0" style="-fx-background-color: orange;" stylesheets="@styles.css" text="Reset Obstacles">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="resetEverything" mnemonicParsing="false" prefHeight="39.0" prefWidth="170.0" stylesheets="@styles.css" text="Reset Everything">
+            <Button fx:id="resetEverything" mnemonicParsing="false" prefHeight="39.0" prefWidth="170.0" style="-fx-background-color: lightcoral;" stylesheets="@styles.css" text="Reset Everything">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>

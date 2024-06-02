@@ -89,7 +89,7 @@ public class AlgorithmBox extends VBox {
 
         // Deselect the previously selected button (if any)
         if (this.selectedButton != null) {
-            this.selectedButton.setStyle("-fx-background-color: transparent;");
+            this.selectedButton.setStyle("-fx-background-color: lightgrey;");
         }
 
         // Select the newly selected button

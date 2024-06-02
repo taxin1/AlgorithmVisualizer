@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -48,6 +49,15 @@ public class Controller {
             return status;
         }
     }
+
+    @FXML
+    private Button bfsButton;
+    @FXML
+    private Button dfsButton;
+    @FXML
+    private Button dijkstraButton;
+    @FXML
+    private Button aStarButton;
 
     private boolean startDrag;
     private boolean targetDrag;
@@ -209,6 +219,9 @@ public class Controller {
     }
 
     public void initialize() {
+        algorithm = "BFS";
+        bfsButton.setStyle("-fx-background-color: #87CEFA;");
+
         System.out.println("START");
         startDrag = false;
         targetDrag = false;
@@ -299,15 +312,15 @@ public class Controller {
         };
 
         // Set up ListView for algorithm selection
-        algorithmListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        algorithmListView.getItems().addAll("BFS", "DFS", "Dijkstra", "A*");
-        algorithmListView.setOnMouseClicked(event -> {
-            String selectedAlgorithm = algorithmListView.getSelectionModel().getSelectedItem();
-            if (selectedAlgorithm != null) {
-                algorithm = selectedAlgorithm;
-                System.out.println(algorithm);
-            }
-        });
+//        algorithmListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+//        algorithmListView.getItems().addAll("BFS", "DFS", "Dijkstra", "A*");
+//        algorithmListView.setOnMouseClicked(event -> {
+//            String selectedAlgorithm = algorithmListView.getSelectionModel().getSelectedItem();
+//            if (selectedAlgorithm != null) {
+//                algorithm = selectedAlgorithm;
+//                System.out.println(algorithm);
+//            }
+//        });
 
         for (Node node : gridPane.getChildren()) {
             if (node instanceof Rectangle) {
@@ -336,6 +349,7 @@ public class Controller {
             Integer column = GridPane.getColumnIndex(node);
             if (row == null || column == null || !(node instanceof Rectangle)) continue;
             Rectangle rect = (Rectangle)node;
+            rect.setStroke(Color.GREY);
             rows.get(row).put(column, rect);
         }
 
@@ -358,6 +372,42 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handledfsButtonClick() {
+        algorithm = "DFS";
+        dfsButton.setStyle("-fx-background-color: #87CEFA;");
+        bfsButton.setStyle("-fx-background-color:lightgrey;");
+        dijkstraButton.setStyle("-fx-background-color:lightgrey;");
+        aStarButton.setStyle("-fx-background-color:lightgrey;");
+    }
+
+    @FXML
+    private void handlebfsButtonClick() {
+        algorithm = "BFS";
+        dfsButton.setStyle("-fx-background-color: lightgrey;");
+        bfsButton.setStyle("-fx-background-color:#87CEFA;");
+        dijkstraButton.setStyle("-fx-background-color:lightgrey;");
+        aStarButton.setStyle("-fx-background-color:lightgrey;");
+    }
+
+    @FXML
+    private void handleaStarButtonClick() {
+        algorithm = "AStar";
+        dfsButton.setStyle("-fx-background-color: lightgrey;");
+        bfsButton.setStyle("-fx-background-color:lightgrey;");
+        dijkstraButton.setStyle("-fx-background-color:lightgrey;");
+        aStarButton.setStyle("-fx-background-color:#87CEFA;");
+    }
+
+    @FXML
+    private void handledijkstraButtonClick() {
+        algorithm = "Dijkstra";
+        dfsButton.setStyle("-fx-background-color: lightgrey;");
+        bfsButton.setStyle("-fx-background-color:lightgrey;");
+        dijkstraButton.setStyle("-fx-background-color:#87CEFA;");
+        aStarButton.setStyle("-fx-background-color:lightgrey;");
     }
 }
 

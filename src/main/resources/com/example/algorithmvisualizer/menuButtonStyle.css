@@ -1,9 +1,9 @@
 .button {
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(204, 204, 204, 0.5);
     -fx-background-radius: 40;
     -fx-border-radius: 40;
     -fx-border-color: #FFFFFF;
-    -fx-border-width: 2px;
+    -fx-border-width: 0px;
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 15px;
     -fx-font-family: "MesloLGL Nerd Font";
@@ -11,8 +11,10 @@
 }
 
 .button:hover {
-    -fx-background-color: rgba(204, 204, 204, 0.5);
     -fx-text-fill: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 0); /* Add shadow on hover */
+    -fx-scale-x: 1.05; /* Slightly increase size */
+    -fx-scale-y: 1.05; /* Slightly increase size */
 }
 
 .button.selected {

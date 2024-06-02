@@ -7,7 +7,7 @@ public class Utility {
     public final static int DIM = 20;
     // number and color code of empty node
     public final static int EMPTY_NODE = 0;
-    public final static Color EMPTY_COLOR = Color.BLACK;
+    public final static Color EMPTY_COLOR = Color.WHITE;
     // number and color code of start node
     public final static int START_NODE = 1;
     public final static Color START_COLOR = Color.RED;
@@ -16,13 +16,13 @@ public class Utility {
     public final static Color TARGET_COLOR = Color.BLUE;
     // number and color code of obstacle node
     public final static int OBSTACLE_NODE = 3;
-    public final static Color OBSTACLE_COLOR = Color.WHITE;
+    public final static Color OBSTACLE_COLOR = Color.BLACK;
     // number and color code of visited node
     public final static int VISITED_NODE = 4;
-    public final static Color VISITED_COLOR = Color.PURPLE;
+    public final static Color VISITED_COLOR = Color.GREY;
     // number and color code of path node
     public final static int PATH_NODE = 5;
-    public final static Color PATH_COLOR = Color.GREEN;
+    public final static Color PATH_COLOR = Color.LIGHTGREEN;
     // number and color code of found node (for target)
     public final static int FOUND_NODE = 6;
     public final static Color FOUND_COLOR = Color.YELLOW;

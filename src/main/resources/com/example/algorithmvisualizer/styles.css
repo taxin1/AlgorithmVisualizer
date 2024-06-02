@@ -8,7 +8,6 @@
     -fx-spacing: 5;
     -fx-alignment: center;
     -fx-min-height: 30;
-
 }
 
 .chartpane{
@@ -82,7 +81,6 @@
     -fx-text-fill: #000000;
 }
 
-
 .vbox{
     -fx-min-width: 100px;
     -fx-border-color: gray;
@@ -93,4 +91,15 @@
     -fx-alignment: center;
     -fx-pref-width: 150;
     -fx-pref-height: 400;
+}
+
+/* New rule to hide the speed labels */
+.speed-label {
+    -fx-opacity: 0; /* Makes the label invisible */
+    -fx-max-height: 0; /* Removes the space it takes */
+}
+
+/* Custom style for the slider thumb */
+.slider .thumb {
+    -fx-background-color: #0077CC; /* Solid blue color */
 }

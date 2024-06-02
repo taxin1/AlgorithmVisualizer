@@ -2,6 +2,7 @@ package com.example.algorithmvisualizer.view;
 
 import com.example.algorithmvisualizer.SortAlgorithms.AlgorithmAnimation;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -42,7 +43,7 @@ public class ButtonBox extends HBox {
         });
 
         durationSlider = new Slider(100, 1500, 400); // min 100ms, max 1500ms, initial 400ms
-        durationSlider.setShowTickLabels(true);
+        durationSlider.setShowTickLabels(false);
         durationSlider.setShowTickMarks(true);
         durationSlider.setMajorTickUnit(100);
         durationSlider.setBlockIncrement(50);
@@ -53,8 +54,12 @@ public class ButtonBox extends HBox {
             }
         });
 
+        // Set preferred width to increase the length of the slider
+        durationSlider.setPrefWidth(300);
+
         playPause = new ToggleButton("Pause"); // Toggle button initialization
         playPause.setDisable(true);
+        playPause.setPrefWidth(70); // Set fixed width to keep the button size constant
         playPause.selectedProperty().addListener((obs, oldVal, newVal) -> {
             isPaused = newVal; // Update isPaused according to the state of the toggle button
             playPause.setText(newVal ? "Play" : "Pause"); // Switch button text between "Pause" and "Play"
@@ -88,6 +93,10 @@ public class ButtonBox extends HBox {
         this.getChildren().add(resetButton);
         this.getChildren().add(removeBarsButton);
         this.getChildren().add(playPause); // Add the toggle button to the children of ButtonBox
+
+        // Set the margin for the durationSlider to move it downwards
+        HBox.setMargin(durationSlider, new Insets(14, 0, 0, 0));
+        HBox.setHgrow(durationSlider, Priority.ALWAYS); // Ensure the slider grows to fill available space
         this.getChildren().add(durationSlider);
 
         Region spacer = new Region();
@@ -95,6 +104,9 @@ public class ButtonBox extends HBox {
         this.getChildren().add(spacer);
 
         this.getChildren().add(backButton);
+
+        // Add the stylesheet to the scene
+        primaryScene.getStylesheets().add(stylesheetPath);
     }
 
     private void clearContent() {

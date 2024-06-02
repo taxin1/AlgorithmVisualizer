@@ -24,8 +24,6 @@ public class SortButton extends Button {
 
         this.setOnAction(actionEvent -> {
             arr = this.fieldBox.getEnterFieldValues();
-
-            // Check if the array is empty
             if (arr.length == 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText("Insert values first");
@@ -74,5 +72,7 @@ public class SortButton extends Button {
         this.resetButton = resetButton;
     }
 
-    public void setPlayPauseButton(ToggleButton playPauseButton) { this.playPauseButton = playPauseButton;}
+    public void setPlayPauseButton(ToggleButton playPauseButton) {
+        this.playPauseButton = playPauseButton;
+    }
 }

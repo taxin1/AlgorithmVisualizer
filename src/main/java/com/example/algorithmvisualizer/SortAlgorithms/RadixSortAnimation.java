@@ -77,11 +77,9 @@ public class RadixSortAnimation extends AlgorithmAnimation {
 
     public void animateRecursive(int transitionIdx) {
         int toLoc, variance;
-        int fromLoc = -1; // Initialize fromLoc to an invalid value
+        int fromLoc = -1;
         Integer[] currentTransition = transitions.get(transitionIdx);
         toLoc = currentTransition[0];
-
-        // Find the correct fromLoc considering duplicates
         int occurrence = 0;
         for (int i = 0; i < VBoxs.length; i++) {
             if (VBoxs[i][0] == currentTransition[1]) {
@@ -101,8 +99,6 @@ public class RadixSortAnimation extends AlgorithmAnimation {
         }
 
         variance = toLoc - fromLoc;
-
-        // Correctly find and move the bar to the new location
         int barIndex = getBarIndex(currentTransition[1], occurrence);
         if (barIndex == -1) {
             System.err.println("Error: Bar not found for value " + currentTransition[1] + " with occurrence " + occurrence);

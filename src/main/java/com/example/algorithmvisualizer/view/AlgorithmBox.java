@@ -9,7 +9,6 @@ import javafx.scene.layout.VBox;
 
 public class AlgorithmBox extends VBox {
     private static final double PREFERRED_WIDTH = 600;
-    // Buttons for each sorting algorithm
     private final Label titleLabel = new Label("Algorithm");
     private final Button bubbleSortButton = new Button("Bubble");
     private final Button selectionSortButton = new Button("Selection");
@@ -23,16 +22,12 @@ public class AlgorithmBox extends VBox {
     private static String selectedAlgorithm = "Bubble Sort";
     private Button selectedButton;
 
-    public AlgorithmBox(FieldBox fieldBox, DescriptionBox descriptionBox){
+    public AlgorithmBox(FieldBox fieldBox, DescriptionBox descriptionBox) {
         setPrefWidth(PREFERRED_WIDTH);
         this.getStyleClass().add("vbox2");
 
         setSpacing(5);
-
-        // Initialize buttons
         initializeButtons(fieldBox, descriptionBox);
-
-        // Add buttons to the VBox
         this.getChildren().addAll(
                 bubbleSortButton,
                 selectionSortButton,
@@ -44,7 +39,7 @@ public class AlgorithmBox extends VBox {
                 radixSortButton
         );
 
-        selectAlgorithm(bubbleSortButton,"Bubble Sort", fieldBox, descriptionBox);
+        selectAlgorithm(bubbleSortButton, "Bubble Sort", fieldBox, descriptionBox);
     }
 
     private void initializeButtons(FieldBox fieldBox, DescriptionBox descriptionBox) {
@@ -64,36 +59,23 @@ public class AlgorithmBox extends VBox {
         countingSortButton.setPrefSize(buttonWidth, buttonHeight);
         radixSortButton.setPrefSize(buttonWidth, buttonHeight);
 
-//        bubbleSortButton.setMaxWidth(Double.MAX_VALUE);
-//        selectionSortButton.setMaxWidth(Double.MAX_VALUE);
-//        insertionSortButton.setMaxWidth(Double.MAX_VALUE);
-//        shellSortButton.setMaxWidth(Double.MAX_VALUE);
-//        mergeSortButton.setMaxWidth(Double.MAX_VALUE);
-//        quickSortButton.setMaxWidth(Double.MAX_VALUE);
-//        countingSortButton.setMaxWidth(Double.MAX_VALUE);
-//        radixSortButton.setMaxWidth(Double.MAX_VALUE);
-
         bubbleSortButton.setOnAction(event -> selectAlgorithm(bubbleSortButton, "Bubble Sort", fieldBox, descriptionBox));
         selectionSortButton.setOnAction(event -> selectAlgorithm(selectionSortButton, "Selection Sort", fieldBox, descriptionBox));
-        insertionSortButton.setOnAction(event -> selectAlgorithm(insertionSortButton,"Insertion Sort", fieldBox, descriptionBox));
-        shellSortButton.setOnAction(event -> selectAlgorithm(shellSortButton,"Shell Sort", fieldBox, descriptionBox));
-        mergeSortButton.setOnAction(event -> selectAlgorithm(mergeSortButton,"Merge Sort", fieldBox, descriptionBox));
-        quickSortButton.setOnAction(event -> selectAlgorithm(quickSortButton,"Quick Sort", fieldBox, descriptionBox));
-        countingSortButton.setOnAction(event -> selectAlgorithm(countingSortButton,"Counting Sort", fieldBox, descriptionBox));
-        radixSortButton.setOnAction(event -> selectAlgorithm(radixSortButton,"Radix Sort", fieldBox, descriptionBox));
+        insertionSortButton.setOnAction(event -> selectAlgorithm(insertionSortButton, "Insertion Sort", fieldBox, descriptionBox));
+        shellSortButton.setOnAction(event -> selectAlgorithm(shellSortButton, "Shell Sort", fieldBox, descriptionBox));
+        mergeSortButton.setOnAction(event -> selectAlgorithm(mergeSortButton, "Merge Sort", fieldBox, descriptionBox));
+        quickSortButton.setOnAction(event -> selectAlgorithm(quickSortButton, "Quick Sort", fieldBox, descriptionBox));
+        countingSortButton.setOnAction(event -> selectAlgorithm(countingSortButton, "Counting Sort", fieldBox, descriptionBox));
+        radixSortButton.setOnAction(event -> selectAlgorithm(radixSortButton, "Radix Sort", fieldBox, descriptionBox));
     }
 
     private void selectAlgorithm(Button selectedButton, String algorithmName, FieldBox fieldBox, DescriptionBox descriptionBox) {
         if (selectedButton == this.selectedButton) {
             return;
         }
-
-        // Deselect the previously selected button (if any)
         if (this.selectedButton != null) {
             this.selectedButton.setStyle("-fx-background-color: lightgrey;");
         }
-
-        // Select the newly selected button
         this.selectedButton = selectedButton;
         this.selectedButton.setStyle("-fx-background-color: #87CEFA;");
 
@@ -101,10 +83,6 @@ public class AlgorithmBox extends VBox {
         selectedAlgorithm = algorithmName;
         System.out.println("Selected algorithm: " + selectedAlgorithm);
         descriptionBox.updateDescription(selectedAlgorithm);
-
-//        if (MainWindow.descriptionBox != null) {
-//            MainWindow.descriptionBox.updateDescription(getDescriptionForAlgorithm(selectedAlgorithm));
-//        }
         if (selectedAlgorithm.equals("Radix Sort")) {
             for (Node node : fieldBox.getChildren()) {
                 if (node instanceof EnterField currentField) {
@@ -134,13 +112,12 @@ public class AlgorithmBox extends VBox {
             case "Bubble Sort" -> "Bubble Sort is a simple sorting algorithm...";
             case "Selection Sort" -> "Selection Sort is another simple sorting algorithm...";
             case "Insertion Sort" -> "Insertion Sort is yet another simple sorting algorithm...";
-            // Add descriptions for other algorithms
             default -> "";
         };
     }
 
     public static AlgorithmAnimation getAlgorithm() {
-        switch(selectedAlgorithm) {
+        switch (selectedAlgorithm) {
             case "Bubble Sort":
                 return new BubbleSortAnimation();
             case "Selection Sort":

@@ -4,9 +4,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 
 public class EnterField extends TextField {
-    private FieldBox fieldBox;
+    private final FieldBox fieldBox;
 
-    public EnterField(FieldBox fieldBox){
+    public EnterField(FieldBox fieldBox) {
         this.fieldBox = fieldBox;
 
         this.setEditable(false);
@@ -16,27 +16,29 @@ public class EnterField extends TextField {
         addFocusedListener();
     }
 
-    private void addFocusedListener(){
+    private void addFocusedListener() {
         this.focusedProperty().addListener((observableValue, s, t1) -> {
-            if(!t1) {
+            if (!t1) {
                 updateChartBar();
             }
         });
     }
 
-    private void addChangeListener(){
+    private void addChangeListener() {
         this.textProperty().addListener((observableValue, oldValue, newValue) -> {
             setEditableField(!newValue.isEmpty());
         });
     }
-    private void setEditableField(boolean isEditable){
+
+    private void setEditableField(boolean isEditable) {
         int index = fieldBox.getChildren().indexOf(this);
-        if(index < 15) {
+        if (index < 15) {
             EnterField nextField = fieldBox.getTextField(index + 1);
             nextField.setEditable(isEditable);
         }
     }
-    private void updateChartBar(){
+
+    private void updateChartBar() {
         String text = this.getText();
         try {
             if (!text.equals("")) {
@@ -63,7 +65,7 @@ public class EnterField extends TextField {
                     }
                 }
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             Tooltip tooltip = new Tooltip("Value must be\nan integer");
             this.setStyle("-fx-text-fill: red");
             this.setTooltip(tooltip);

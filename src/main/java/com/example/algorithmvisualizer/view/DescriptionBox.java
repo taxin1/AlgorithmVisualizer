@@ -10,8 +10,6 @@ public class DescriptionBox extends VBox {
     public DescriptionBox() {
         this.getStyleClass().add("vbox3");
         descriptionTextArea = new TextArea();
-//        descriptionTextArea.setStyle("-fx-font-family: \"MesloLGL Nerd Font\";");
-//        descriptionTextArea.setStyle("-fx-font-weight: bold;");
         descriptionTextArea.setEditable(false);
         descriptionTextArea.setWrapText(true);
         descriptionTextArea.setPrefWidth(250);
@@ -19,7 +17,7 @@ public class DescriptionBox extends VBox {
         descriptionTextArea.setStyle("-fx-alignment: center;");
         this.getChildren().add(descriptionTextArea);
 
-        this.setPrefWidth(250); // Adjust width as needed
+        this.setPrefWidth(250);
         this.setPrefHeight(250);
     }
 
@@ -67,7 +65,6 @@ public class DescriptionBox extends VBox {
                     "Worst Time Complexity: O(nk)\n" +
                     "Average Time Complexity: O(nk)\n" +
                     "Space Complexity: O(n + k)";
-            // Add descriptions for other algorithms
             default -> "";
         };
     }

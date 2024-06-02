@@ -10,7 +10,7 @@ public class AlgoBoxOld extends VBox {
     private static final ListView<String> algorithmList = new ListView<>();
     private static String selectedIndices = "";
 
-    public AlgoBoxOld(FieldBox fieldBox){
+    public AlgoBoxOld(FieldBox fieldBox) {
         this.getStyleClass().add("vbox");
         algorithmList.getStyleClass().add("list-view");
 
@@ -25,9 +25,9 @@ public class AlgoBoxOld extends VBox {
             if (MainWindow.descriptionBox != null) {
                 MainWindow.descriptionBox.updateDescription(getDescriptionForAlgorithm(selectedIndices));
             }
-            if(selectedIndices.equals("Radix Sort")){
-                for(Node node : fieldBox.getChildren()){
-                    if(node instanceof EnterField currentField) {
+            if (selectedIndices.equals("Radix Sort")) {
+                for (Node node : fieldBox.getChildren()) {
+                    if (node instanceof EnterField currentField) {
                         if (!currentField.getText().isEmpty()) {
                             int value = Integer.parseInt(currentField.getText());
                             if (value < 10) {
@@ -40,8 +40,8 @@ public class AlgoBoxOld extends VBox {
                 }
                 fieldBox.setLabel("Enter Values 10-50: ");
             } else {
-                for(Node node : fieldBox.getChildren()){
-                    if(node instanceof EnterField) {
+                for (Node node : fieldBox.getChildren()) {
+                    if (node instanceof EnterField) {
                         node.setStyle("-fx-text-fill: black");
                     }
                 }
@@ -50,7 +50,7 @@ public class AlgoBoxOld extends VBox {
         });
     }
 
-    private void initializeAlgorithms(){
+    private void initializeAlgorithms() {
         algorithmList.getItems().add("Bubble Sort");
         algorithmList.getItems().add("Selection Sort");
         algorithmList.getItems().add("Insertion Sort");
@@ -66,13 +66,12 @@ public class AlgoBoxOld extends VBox {
             case "Bubble Sort" -> "Bubble Sort is a simple sorting algorithm...";
             case "Selection Sort" -> "Selection Sort is another simple sorting algorithm...";
             case "Insertion Sort" -> "Insertion Sort is yet another simple sorting algorithm...";
-            // Add descriptions for other algorithms
             default -> "";
         };
     }
 
-    public static AlgorithmAnimation getAlgorithm(){
-        switch(selectedIndices){
+    public static AlgorithmAnimation getAlgorithm() {
+        switch (selectedIndices) {
             case "Bubble Sort":
                 return new BubbleSortAnimation();
             case "Selection Sort":
@@ -94,7 +93,7 @@ public class AlgoBoxOld extends VBox {
         }
     }
 
-    public static String getSelectedIndices(){
+    public static String getSelectedIndices() {
         return selectedIndices;
     }
 }

@@ -63,7 +63,9 @@ public abstract class AlgorithmAnimation {
         transitionList.add(tt);
     }
 
-    public AlgorithmAnimation getCurrent () { return current; }
+    public AlgorithmAnimation getCurrent() {
+        return current;
+    }
 
     public final void setSPSize(int spSize) {
         this.spSize = spSize;
@@ -96,12 +98,12 @@ public abstract class AlgorithmAnimation {
     private void setRectanglesToGreen() {
         for (int i = 0; i < spSize; i++) {
             VBox bar = (VBox) MainWindow.chartPane.getChildren().get(i);
-            Rectangle rect = (Rectangle) bar.getChildren().get(0); // Assuming rectangle is the first child
+            Rectangle rect = (Rectangle) bar.getChildren().get(0);
             rect.setFill(Color.LIGHTGREEN);
         }
     }
 
-    public void continueTransition () {
+    public void continueTransition() {
         currentTransitionIndex++;
         playNextTransition();
         System.out.println(1);
@@ -112,5 +114,6 @@ public abstract class AlgorithmAnimation {
     }
 
     public abstract void startSort(int[] arr);
+
     public abstract void playAnimation();
 }

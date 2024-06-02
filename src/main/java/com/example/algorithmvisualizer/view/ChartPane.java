@@ -18,9 +18,8 @@ public class ChartPane extends HBox {
             Text text = new Text(Integer.toString(height));
             Rectangle rect = new Rectangle(20, height * 9);
             rect.setFill(Color.CORNFLOWERBLUE);
-            // Set rounded corners
-            rect.setArcWidth(10); // Adjust the value as needed
-            rect.setArcHeight(10); // Adjust the value as needed
+            rect.setArcWidth(10);
+            rect.setArcHeight(10);
 
             VBox vbox = new VBox();
             vbox.setAlignment(Pos.BOTTOM_CENTER);

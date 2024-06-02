@@ -14,7 +14,7 @@ public class AlgorithmVisualizerMenu extends Application {
         Parent root = loader.load();
         AlgorithmVisualizerMenuController controller = loader.getController();
         Scene scene = new Scene(root, 900, 600);
-        controller.setPrimaryScene(scene); // Pass the scene to the controller
+        controller.setPrimaryScene(scene);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("AlgoWiz");

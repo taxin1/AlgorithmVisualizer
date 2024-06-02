@@ -8,54 +8,31 @@ import static com.example.algorithmvisualizer.Utility.*;
 
 public class DFSAlgorithm {
 
-    // visited array for each row in grid
-    private boolean [][] visited;
-    // 2D array to represent grid
-    private int [][] grid;
-    // direction vectors
-    private int rowDir[];
-    private int columnDir[];
-    // controller for updating gui
+    private final boolean[][] visited;
+    private final int[][] grid;
+    private final int[] rowDir;
+    private final int[] columnDir;
     private Controller controller;
-    // boolean for whether or not the target node was found
     private boolean found;
 
-    /**
-     * Constructor for DFSAlgorithm
-     */
-    public DFSAlgorithm(int [][] grid) {
+    public DFSAlgorithm(int[][] grid) {
         visited = new boolean[DIM][DIM];
         for (int row = 0; row < DIM; row++)
             Arrays.fill(visited[row], false);
         this.grid = grid;
-        rowDir = new int[] {-1, 0, 1, 0, -1, 1, 1, -1};
-        columnDir = new int[] {0, 1, 0, -1, 1, 1, -1, -1};
+        rowDir = new int[]{-1, 0, 1, 0, -1, 1, 1, -1};
+        columnDir = new int[]{0, 1, 0, -1, 1, 1, -1, -1};
         found = false;
     }
 
-    /**
-     * Set controller to update GUI and access controller methods
-     * @param controller        controller to update GUI
-     */
     public void setController(Controller controller) {
         this.controller = controller;
     }
 
-    /**
-     * Validates that the node is within grid bounds or is an empty node
-     * @param row               row coordinate of node
-     * @param column            column coordinate of node
-     * @return boolean          true if within bounds or epty node else false
-     */
     private boolean validator(int row, int column) {
-        if (row >= 0 && row < DIM && column >=0 && column < DIM && !visited[row][column] && grid[row][column] != OBSTACLE_NODE)
-            return true;
-        return false;
+        return row >= 0 && row < DIM && column >= 0 && column < DIM && !visited[row][column] && grid[row][column] != OBSTACLE_NODE;
     }
 
-    /**
-     * Perform DFS on grid
-     */
     public void DFS(int row, int column) {
         if (found) return;
 

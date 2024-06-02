@@ -1,72 +1,3 @@
-
-/**************** SCROLL BAR ***********/
-/*.scroll-bar:vertical > .track-background, .scroll-bar:horizontal > .track-background {
-    -fx-background-color: #F1F1F1;
-    -fx-background-insets: 0.0;
-}
-
-.scroll-bar:vertical > .thumb, .scroll-bar:horizontal > .thumb {
-    -fx-background-color: #BCBCBC;
-    -fx-background-insets: 0.0;
-    -fx-background-radius: 1.0;
-}
-
- Up- and Down-Button Padding 
-
-.scroll-bar:vertical > .increment-button, .scroll-bar:vertical > .decrement-button {
-    -fx-padding: 5 2 5 2;
-}
-
- Left- and Right-Button Padding 
-.scroll-bar:horizontal > .increment-button, .scroll-bar:horizontal > .decrement-button {
-    -fx-padding: 2 5 2 5;
-}
-
-.scroll-bar > .increment-button, .scroll-bar > .decrement-button, .scroll-bar:hover > .increment-button, .scroll-bar:hover > .decrement-button {
-    -fx-background-color: transparent;
-}
-
-.scroll-bar > .increment-button > .increment-arrow, .scroll-bar > .decrement-button > .decrement-arrow {
-    -fx-background-color: rgb(150.0, 150.0, 150.0);
-}
-
- Up Arrow 
-.scroll-bar:vertical > .increment-button > .increment-arrow {
-    -fx-shape: "M298 426h428l-214 214z";
-}
-
- Down Arrow 
-.scroll-bar:vertical > .decrement-button > .decrement-arrow {
-    -fx-shape: "M298 598l214-214 214 214h-428z";
-}
-
- Right Arrow     
-.scroll-bar:horizontal > .increment-button > .increment-arrow {
-    -fx-shape: "M0 428l0 -428l214 214l-214 214z";
-}
-
- Left Arrow 
-.scroll-bar:horizontal > .decrement-button > .decrement-arrow {
-    -fx-shape: "M214 0l0 428l-214 -214l214 -214z";
-}
-
-/**************** SCROLL PANE *************/
-
-/*.scroll-pane {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: BLACK;
-}
-
-.scroll-pane:focused {
-    -fx-background-insets: 0;
-}
-
-.scroll-pane .corner {
-    -fx-background-insets: 0;
-}*/
-
-/*************************************************************/
 #node {
     -fx-cursor: default;
 }
@@ -89,7 +20,6 @@
     -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.6) , 6, 0.0 , 0 , 0);
 }
 
-/********** Menu Item ***********/
 .menu-item {
     -fx-background-radius: 2.5px;
 }
@@ -100,7 +30,6 @@
     -fx-padding: 0em 0.333em 0em 0em;
 }
 
-/********** LABEL ***********/
 .menu-item >.label {
     -fx-background-color:transparent;
     -fx-padding: 0.2em 0.1em 0.2em 0.1em;
@@ -113,15 +42,12 @@
     -fx-text-fill: black;
 }
 
-/********* ROOT ***********/
 .root {
-    /* Swatch Colors - Blue*/
     -swatch-100: #BBDEFB;
     -swatch-200: #90CAF9;
     -swatch-300: #64BEF6;
     -swatch-400: #42A5F5;
     -swatch-500: #2196F3;
-    /*default text */
     -fx-text-base-color: black;
     -fx-text-button-normal: -swatch-500;
     -fx-text-button-colored: rgb(255.0, 255.0, 255.0);
@@ -136,46 +62,20 @@
     -fx-font-family: 'MesloLGL Nerd Font';
     -fx-font-size: 12.0px;
     -fx-disabled-opacity: 0.6;
-    /*default colors */
     -swatch-grey: rgb(200.0, 200.0, 200.0);
     -swatch-dark-grey: rgb(150.0, 150.0, 150.0);
     -swatch-light-grey: rgb(230.0, 230.0, 230.0);
     -swatch-toolbar: rgb(245.0, 245.0, 245.0);
     -swatch-toolbar-selected: rgb(215.0, 215.0, 215.0);
-    /* 
- Modena colors
-    */
-    -fx-dark-text-color: black; /* Text color when selected*/
+    -fx-dark-text-color: black;
     -fx-mid-text-color: black;
     -fx-body-color: white;
-    /* A bright blue for the focus indicator of objects. Typically used as the
- * first color in -fx-background-color for the "focused" pseudo-class. Also
- * typically used with insets of -1.4 to provide a glowing effect.
- */
     -fx-focus-color: -swatch-400;
     -fx-faint-focus-color: -swatch-200;
-    /* A bright blue for highlighting/accenting objects.  For example: selected
- * text; selected items in menus, lists, trees, and tables; progress bars */
     -fx-accent: -swatch-400;
     -fx-dark-text-color: black;
 }
 
-/********** BUTTON/ TOGGLE BUTTON *********/
-/*#spec:focused:selected {
-        -fx-background-color: derive(-swatch-500, 50.0%),
-                derive(-swatch-500, -20.0%);
-        -fx-background-insets: 0.0, 0.2em;
-        -fx-effect: default;
-        -fx-text-fill: -fx-text-button-colored;
-}*/
-
-/*#spec:armed, #spec:selected, .button:armed, .button:default:armed {
-        -fx-background-color: -swatch-grey;
-        -fx-text-fill: -fx-text-button-colored;
-}*/
-
-
-/************ SCROLL BAR ***********/
 .scroll-bar:vertical>.track-background, .scroll-bar:horizontal>.track-background
 {
     -fx-background-color: -swatch-light-grey;
@@ -203,7 +103,6 @@
     -fx-background-color: transparent;
 }
 
-/************* TEXT AREA & TEXT FIELD *************/
 .text {
     -fx-font-smoothing-type: gray;
 }
@@ -241,7 +140,6 @@
     -fx-border-color: -swatch-500;
 }
 
-/*********** DIALOG BOX **********/
 #message{
     -fx-font-family: "Roboto Medium";
     -fx-font-size: 15;

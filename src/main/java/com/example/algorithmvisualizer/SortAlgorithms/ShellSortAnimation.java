@@ -10,10 +10,10 @@ public class ShellSortAnimation extends AlgorithmAnimation {
         int j, newElement;
         int gap = arr.length / 2;
 
-        while(gap > 0) {
+        while (gap > 0) {
             for (int i = gap; i < arr.length; i++) {
                 newElement = arr[i];
-                for(j = i - gap; j >= 0; j = j - gap) {
+                for (j = i - gap; j >= 0; j = j - gap) {
                     if (newElement < arr[j]) {
                         arr[j + gap] = arr[j];
                         arr[j] = newElement;
@@ -24,10 +24,11 @@ public class ShellSortAnimation extends AlgorithmAnimation {
             gap = gap / 2;
         }
     }
+
     @Override
     public void playAnimation() {
         initializeSPOrder();
-        for(int i = 0; i < transitions.size(); i++) {
+        for (int i = 0; i < transitions.size(); i++) {
             animateIterative(true, i);
         }
         playSequentialTransition();

@@ -18,20 +18,17 @@ public class ResetButton extends Button {
         this.setOnAction(actionEvent -> {
             int[] arr = this.fieldBox.getEnterFieldValues();
             if (arr.length == 0) {
-                // No values entered, show an alert
                 return;
             }
 
-            MainWindow.chartPane.clearChart(); // Clear the chart pane
-
-            // Update the chart pane with bars according to the values in the text fields
+            MainWindow.chartPane.clearChart();
             for (int i = 0; i < arr.length; i++) {
                 int height = arr[i];
                 MainWindow.chartPane.updateBar(height, i);
             }
 
-            this.setDisable(true); // Disable the reset button
-            this.sortButton.setDisable(false); // Enable the sort button
+            this.setDisable(true);
+            this.sortButton.setDisable(false);
             this.playPause.setDisable(true);
         });
     }
@@ -39,5 +36,8 @@ public class ResetButton extends Button {
     public void setSortButton(SortButton sortButton) {
         this.sortButton = sortButton;
     }
-    public void setPlayPause(ToggleButton playPause) { this.playPause = playPause; }
+
+    public void setPlayPause(ToggleButton playPause) {
+        this.playPause = playPause;
+    }
 }

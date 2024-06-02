@@ -1,14 +1,14 @@
 package com.example.algorithmvisualizer.SortAlgorithms;
 
-public class SelectionSortAnimation extends AlgorithmAnimation{
+public class SelectionSortAnimation extends AlgorithmAnimation {
     @Override
     public void startSort(int[] arr) {
         int largestIdx;
 
-        for(int i = arr.length - 1; i > 0; i--){
+        for (int i = arr.length - 1; i > 0; i--) {
             largestIdx = i;
-            for(int j = 0; j < i; j++){
-                if(arr[j] > arr[largestIdx]){
+            for (int j = 0; j < i; j++) {
+                if (arr[j] > arr[largestIdx]) {
                     largestIdx = j;
                 }
             }
@@ -21,10 +21,10 @@ public class SelectionSortAnimation extends AlgorithmAnimation{
     public void playAnimation() {
         initializeSPOrder();
 
-        for(int i = 0; i < transitions.size(); i++) {
+        for (int i = 0; i < transitions.size(); i++) {
             animateIterative(true, i);
         }
-       playSequentialTransition();
+        playSequentialTransition();
     }
 
 }

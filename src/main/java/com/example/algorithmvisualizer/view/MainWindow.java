@@ -26,8 +26,6 @@ public class MainWindow extends BorderPane {
         if (this.getRight() instanceof DescriptionBox) {
             this.setRight(null);
         }
-
-        // Assign new instances
         FieldBox fieldBox = new FieldBox();
         chartPane = new ChartPane();
         descriptionBox = new DescriptionBox();

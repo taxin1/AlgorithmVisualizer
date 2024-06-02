@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -145,8 +144,7 @@ public class Controller {
         for (Node node : gridPane.getChildren()) {
             Integer row = GridPane.getRowIndex(node);
             Integer column = GridPane.getColumnIndex(node);
-            if (row == null || column == null || !(node instanceof Rectangle)) continue;
-            Rectangle rect = (Rectangle)node;
+            if (row == null || column == null || !(node instanceof Rectangle rect)) continue;
             int status = grid.getNode(row, column);
             switch (status) {
                 case EMPTY_NODE:
@@ -302,20 +300,8 @@ public class Controller {
             handleBackButtonClick();
         };
 
-        // Set up ListView for algorithm selection
-//        algorithmListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-//        algorithmListView.getItems().addAll("BFS", "DFS", "Dijkstra", "A*");
-//        algorithmListView.setOnMouseClicked(event -> {
-//            String selectedAlgorithm = algorithmListView.getSelectionModel().getSelectedItem();
-//            if (selectedAlgorithm != null) {
-//                algorithm = selectedAlgorithm;
-//                System.out.println(algorithm);
-//            }
-//        });
-
         for (Node node : gridPane.getChildren()) {
-            if (node instanceof Rectangle) {
-                Rectangle rect = (Rectangle)node;
+            if (node instanceof Rectangle rect) {
                 rect.setOnMouseClicked(mouseClickHandler);
                 rect.setOnDragDetected(event -> rect.startFullDrag());
                 rect.setOnMouseDragEntered(mouseDragHandler);
@@ -338,8 +324,7 @@ public class Controller {
         for (Node node : gridPane.getChildren()) {
             Integer row = GridPane.getRowIndex(node);
             Integer column = GridPane.getColumnIndex(node);
-            if (row == null || column == null || !(node instanceof Rectangle)) continue;
-            Rectangle rect = (Rectangle)node;
+            if (row == null || column == null || !(node instanceof Rectangle rect)) continue;
             rect.setStroke(Color.GREY);
             rows.get(row).put(column, rect);
         }
@@ -375,7 +360,6 @@ public class Controller {
         dfsButton.setStyle("-fx-background-color: #87CEFA;");
         bfsButton.setStyle("-fx-background-color:lightgrey;");
         dijkstraButton.setStyle("-fx-background-color:lightgrey;");
-        //aStarButton.setStyle("-fx-background-color:lightgrey;");
     }
 
     @FXML
@@ -386,19 +370,7 @@ public class Controller {
         dfsButton.setStyle("-fx-background-color: lightgrey;");
         bfsButton.setStyle("-fx-background-color:#87CEFA;");
         dijkstraButton.setStyle("-fx-background-color:lightgrey;");
-        //aStarButton.setStyle("-fx-background-color:lightgrey;");
     }
-
-//    @FXML
-//    private void handleaStarButtonClick() {
-//        clearPath();
-//        isReset = true;
-//        algorithm = "AStar";
-//        dfsButton.setStyle("-fx-background-color: lightgrey;");
-//        bfsButton.setStyle("-fx-background-color:lightgrey;");
-//        dijkstraButton.setStyle("-fx-background-color:lightgrey;");
-//        //aStarButton.setStyle("-fx-background-color:#87CEFA;");
-//    }
 
     @FXML
     private void handledijkstraButtonClick() {
@@ -408,7 +380,6 @@ public class Controller {
         dfsButton.setStyle("-fx-background-color: lightgrey;");
         bfsButton.setStyle("-fx-background-color:lightgrey;");
         dijkstraButton.setStyle("-fx-background-color:#87CEFA;");
-        //aStarButton.setStyle("-fx-background-color:lightgrey;");
     }
 }
 

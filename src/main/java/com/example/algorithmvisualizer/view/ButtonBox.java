@@ -23,10 +23,10 @@ public class ButtonBox extends HBox {
     Button backButton;
     Button removeBarsButton;
     Slider durationSlider;
-    static ToggleButton playPause; // New toggle button
+    static ToggleButton playPause;
     AlgorithmAnimation current;
     static Duration animationDuration = Duration.millis(400);
-    public static boolean isPaused = false; // Variable to store pause state, initially paused
+    public static boolean isPaused = false;
 
     public ButtonBox(FieldBox fieldBox, FXMLLoader loader, Scene primaryScene, String stylesheetPath) {
         this.getStyleClass().add("buttonbox");
@@ -43,7 +43,7 @@ public class ButtonBox extends HBox {
             stage.setScene(scene);
         });
 
-        durationSlider = new Slider(100, 1500, 400); // min 100ms, max 1500ms, initial 400ms
+        durationSlider = new Slider(100, 1500, 400);
         durationSlider.setShowTickLabels(false);
         durationSlider.setShowTickMarks(false);
         durationSlider.setMajorTickUnit(100);
@@ -54,30 +54,25 @@ public class ButtonBox extends HBox {
                 animationDuration = Duration.millis(newVal.doubleValue());
             }
         });
-
-        // Set preferred width to increase the length of the slider
         durationSlider.setPrefWidth(250);
 
-        playPause = new ToggleButton("Pause"); // Toggle button initialization
+        playPause = new ToggleButton("Pause");
         playPause.setDisable(true);
-        playPause.setPrefWidth(70); // Set fixed width to keep the button size constant
+        playPause.setPrefWidth(70);
         playPause.selectedProperty().addListener((obs, oldVal, newVal) -> {
-            isPaused = newVal; // Update isPaused according to the state of the toggle button
-            playPause.setText(newVal ? "Play" : "Pause"); // Switch button text between "Pause" and "Play"
+            isPaused = newVal;
+            playPause.setText(newVal ? "Play" : "Pause");
             if (!newVal) {
                 if (current != null) {
                     current.continueTransition();
                 }
             }
         });
-
-        // Create and add back button
         backButton = new Button("Back");
         backButton.setOnAction(event -> {
             clearContent();
             reloadAlgorithmVisualizerMenu(loader);
         });
-        // backButton.setStyle("-fx-background-color: lightgrey;");
 
         this.sortButton.getStyleClass().add("button");
         this.sortButton.setStyle("-fx-background-color: lightgreen;");
@@ -97,11 +92,9 @@ public class ButtonBox extends HBox {
         this.getChildren().add(sortButton);
         this.getChildren().add(resetButton);
         this.getChildren().add(removeBarsButton);
-        this.getChildren().add(playPause); // Add the toggle button to the children of ButtonBox
-
-        // Set the margin for the durationSlider to move it downwards
+        this.getChildren().add(playPause);
         HBox.setMargin(durationSlider, new Insets(14, 0, 0, 0));
-        HBox.setHgrow(durationSlider, Priority.ALWAYS); // Ensure the slider grows to fill available space
+        HBox.setHgrow(durationSlider, Priority.ALWAYS);
         this.getChildren().add(durationSlider);
 
         Region spacer = new Region();
@@ -109,8 +102,6 @@ public class ButtonBox extends HBox {
         this.getChildren().add(spacer);
 
         this.getChildren().add(backButton);
-
-        // Add the stylesheet to the scene
         primaryScene.getStylesheets().add(stylesheetPath);
     }
 

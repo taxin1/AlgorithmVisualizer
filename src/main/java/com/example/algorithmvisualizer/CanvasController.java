@@ -63,6 +63,8 @@ public class CanvasController implements Initializable, ChangeListener {
     @FXML
     private ToggleGroup algoToggleGroup;
     @FXML
+    private RadioButton dButton, udButton, wButton, uwButton;
+    @FXML
     private Pane viewer;
     @FXML
     private Group canvasGroup;
@@ -92,8 +94,7 @@ public class CanvasController implements Initializable, ChangeListener {
     boolean addNode = true, addEdge = false, calculate = false,
             calculated = false, playing = false, paused = false, pinned = false;
     List<Label> distances = new ArrayList<Label>(), visitTime = new ArrayList<>(), lowTime = new ArrayList<Label>();
-    private boolean weighted = Panel1Controller.weighted, unweighted = Panel1Controller.unweighted,
-            directed = Panel1Controller.directed, undirected = Panel1Controller.undirected,
+    public boolean weighted = false, unweighted = true, directed = false, undirected = true,
             bfs = true, dfs = true, dijkstra = true, articulationPoint = true, mst = true, topSortBool = true;
     Algorithm algo = new Algorithm();
 
@@ -106,6 +107,33 @@ public class CanvasController implements Initializable, ChangeListener {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        dButton.setSelected(directed);
+        udButton.setSelected(undirected);
+        wButton.setSelected(weighted);
+        uwButton.setSelected(unweighted);
+
+        dButton.setOnAction(e -> {
+            directed = true;
+            undirected = false;
+            udButton.setSelected(false);
+        });
+        udButton.setOnAction(e -> {
+            directed = false;
+            undirected = true;
+            dButton.setSelected(false);
+        });
+        wButton.setOnAction(e -> {
+            weighted = true;
+            unweighted = false;
+            uwButton.setSelected(false);
+        });
+        uwButton.setOnAction(e -> {
+            weighted = false;
+            unweighted = true;
+            wButton.setSelected(false);
+        });
+
         System.out.println("In intit");
         hiddenPane.setContent(canvasGroup);
 //        anchorRoot.setManaged(false);
@@ -115,7 +143,7 @@ public class CanvasController implements Initializable, ChangeListener {
         viewer.prefWidthProperty().bind(border.widthProperty());
 //        AddNodeHandle(null);
         addEdgeButton.setDisable(true);
-        addNodeButton.setDisable(true);
+        //addNodeButton.setDisable(true);
         clearButton.setDisable(true);
 
         if (weighted) {
@@ -133,10 +161,13 @@ public class CanvasController implements Initializable, ChangeListener {
         canvasBackButton.setOnAction(e -> {
             try {
                 ResetHandle(null);
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Panel1FXML.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/algorithmvisualizer/Menu.fxml"));
+                Parent menuRoot = loader.load();
                 Scene scene = canvasBackButton.getScene();
-                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Styling.css")).toExternalForm());
-                scene.setRoot(root);
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("menuButtonStyle.css")).toExternalForm());
+                scene.setRoot(menuRoot);
+                AlgorithmVisualizerMenuController controller = loader.getController();
+                controller.setPrimaryScene(scene);
                 } catch (IOException ex) {
                 Logger.getLogger(CanvasController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -228,13 +259,6 @@ public class CanvasController implements Initializable, ChangeListener {
 
     }
 
-    /**
-     * Change Listener for change in speed slider values.
-     *
-     * @param observable
-     * @param oldValue
-     * @param newValue
-     */
     @Override
     public void changed(ObservableValue observable, Object oldValue, Object newValue) {
         int temp = (int) slider.getValue();
@@ -254,17 +278,15 @@ public class CanvasController implements Initializable, ChangeListener {
         System.out.println(time);
     }
 
-    /**
-     * Handles events for mouse clicks on the canvas. Adds a new node on the
-     * drawing canvas where mouse is clicked.
-     *
-     * @param ev
-     */
     @FXML
     public void handle(MouseEvent ev) {
         if (addNode) {
             if (nNode == 1) {
                 addNodeButton.setDisable(false);
+                wButton.setDisable(true);
+                uwButton.setDisable(true);
+                dButton.setDisable(true);
+                udButton.setDisable(true);
             }
             if (nNode == 2) {
                 addEdgeButton.setDisable(false);
@@ -546,6 +568,11 @@ public class CanvasController implements Initializable, ChangeListener {
         mstButton.setDisable(true);
         playing = false;
         paused = false;
+
+        wButton.setDisable(false);
+        uwButton.setDisable(false);
+        dButton.setDisable(false);
+        udButton.setDisable(false);
     }
 
     /**

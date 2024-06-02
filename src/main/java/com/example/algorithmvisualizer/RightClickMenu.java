@@ -47,10 +47,10 @@ public class RightClickMenu {
         this();
         sourceEdge = edge;
         delete.setOnAction(e -> {
-            Panel1Controller.cref.deleteEdge(sourceEdge);
+            AlgorithmVisualizerMenuController.cref.deleteEdge(sourceEdge);
         });
         changeId.setOnAction(e -> {
-            Panel1Controller.cref.changeWeight(sourceEdge);
+            AlgorithmVisualizerMenuController.cref.changeWeight(sourceEdge);
         });
     }
 

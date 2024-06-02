@@ -17,7 +17,8 @@ public class AlgorithmVisualizerMenuController {
     @FXML
     private AnchorPane mainAnchorPane;
     private Scene primaryScene;
-    public static Stage primaryStage;
+
+    static CanvasController cref;
 
     public void setPrimaryScene(Scene scene) {
         this.primaryScene = scene;
@@ -80,11 +81,12 @@ public class AlgorithmVisualizerMenuController {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Panel1FXML.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Canvas.fxml"));
             Parent pathfindingRoot = loader.load();
             Scene currentScene = mainAnchorPane.getScene();
             currentScene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("Styling.css")).toExternalForm());
             currentScene.setRoot(pathfindingRoot);
+            cref = loader.getController();
         } catch (Exception e) {
             e.printStackTrace();
         }

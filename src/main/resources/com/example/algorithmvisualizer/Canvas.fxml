@@ -6,6 +6,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
@@ -18,22 +19,47 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.HiddenSidesPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.algorithmvisualizer.CanvasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.algorithmvisualizer.CanvasController">
    <children>
       <StackPane fx:id="stackRoot" prefHeight="620.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane fx:id="anchorRoot" layoutX="1.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane fx:id="border" layoutX="199.0" prefHeight="580.0" prefWidth="702.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="border" layoutX="199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="701.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Group fx:id="canvasGroup" layoutX="200.0" layoutY="-3.0" onMouseClicked="#handle" onMouseDragged="#handle" onMousePressed="#handle" onMouseReleased="#handle">
                <children>
-                  <Pane fx:id="viewer" onMouseClicked="#handle" onMouseDragged="#handle" onMousePressed="#handle" onMouseReleased="#handle" prefHeight="627.0" prefWidth="702.0" style="-fx-background-color: #E0E0E0;">
+                  <Pane fx:id="viewer" onMouseClicked="#handle" onMouseDragged="#handle" onMousePressed="#handle" onMouseReleased="#handle" prefHeight="537.0" prefWidth="702.0" style="-fx-background-color: #E0E0E0;">
                      <cursor>
                         <Cursor fx:constant="CROSSHAIR" />
                      </cursor>
                   </Pane>
+                  <HBox alignment="CENTER_LEFT" layoutY="547.0" prefHeight="49.0" prefWidth="702.0" spacing="5.0">
+                     <children>
+                        <JFXNodesList fx:id="nodeList" prefHeight="0.0" prefWidth="0.0">
+                           <children>
+                              <JFXButton fx:id="gear" contentDisplay="GRAPHIC_ONLY" prefHeight="35.0" prefWidth="44.0" style="-fx-background-radius: 100;">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../res/fast_forward_black_48x48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Change Animation Speed" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="12.5" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </JFXButton>
+                           </children>
+                        </JFXNodesList>
+                        <Pane prefHeight="62.0" prefWidth="371.0" />
+                     </children>
+                  </HBox>
                </children>
             </Group>
-            <HiddenSidesPane fx:id="hiddenPane" layoutX="200.0" layoutY="-3.0" prefHeight="628.0" prefWidth="701.0" style="-fx-background-color: #E0E0E0;" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-3.0">
+            <HiddenSidesPane fx:id="hiddenPane" layoutX="200.0" layoutY="-3.0" prefHeight="537.0" prefWidth="701.0" style="-fx-background-color: #E0E0E0;" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-3.0">
                <cursor>
                   <Cursor fx:constant="CROSSHAIR" />
                </cursor>
@@ -46,15 +72,25 @@
             <AnchorPane prefHeight="580.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="519.0" prefHeight="61.0" prefWidth="181.0" spacing="10.0" AnchorPane.bottomAnchor="0.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <VBox alignment="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="178.0" prefWidth="206.0" spacing="10.0" AnchorPane.bottomAnchor="407.6" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-2.6000000000000227">
                      <children>
-                        <JFXButton fx:id="clearButton" onAction="#ClearHandle" prefHeight="31.0" prefWidth="76.0" stylesheets="@styles.css" text="Clear" textFill="#d3c5c5">
-                           <font>
-                              <Font name="MesloLGL Nerd Font Regular" size="13.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </JFXButton>
+                        <ToggleButton fx:id="bfsButton" mnemonicParsing="false" onAction="#BFSHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="BFS" />
+                        <ToggleButton fx:id="dfsButton" mnemonicParsing="false" onAction="#DFSHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="DFS" />
+                        <ToggleButton fx:id="dijkstraButton" mnemonicParsing="false" onAction="#DijkstraHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Dijkstra" />
+                        <ToggleButton fx:id="mstButton" mnemonicParsing="false" onAction="#MSTHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="MST" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="30.0" layoutY="332.0" prefHeight="256.0" prefWidth="139.0" spacing="10.0">
+                     <children>
+                        <ToggleButton fx:id="addNodeButton" mnemonicParsing="false" onAction="#AddNodeHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Add Node" />
+                        <ToggleButton fx:id="addEdgeButton" mnemonicParsing="false" onAction="#AddEdgeHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Add Edge" />
                         <JFXButton fx:id="resetButton" onAction="#ResetHandle" prefHeight="31.0" prefWidth="76.0" stylesheets="@styles.css" text="Reset" textFill="#d3c5c5">
                            <font>
                               <Font name="MesloLGL Nerd Font Mono Bold" size="13.0" />
@@ -63,50 +99,23 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <VBox alignment="CENTER" layoutX="-5.0" layoutY="395.0" prefHeight="304.0" prefWidth="206.0" spacing="10.0" AnchorPane.bottomAnchor="259.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-1.0">
-                     <children>
-                        <ToggleButton fx:id="bfsButton" mnemonicParsing="false" onAction="#BFSHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="BFS" />
-                        <ToggleButton fx:id="dfsButton" mnemonicParsing="false" onAction="#DFSHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="DFS" />
-                        <ToggleButton fx:id="dijkstraButton" mnemonicParsing="false" onAction="#DijkstraHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Dijkstra" />
-                        <ToggleButton fx:id="mstButton" mnemonicParsing="false" onAction="#MSTHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="MST" />
-                     </children>
-                  </VBox>
-                  <JFXButton fx:id="playPauseButton" contentDisplay="GRAPHIC_ONLY" layoutX="111.0" layoutY="1.0" onAction="#PlayPauseHandle" prefHeight="35.0" prefWidth="44.0" style="-fx-background-radius: 100;">
-                     <graphic>
+                        <JFXButton fx:id="clearButton" onAction="#ClearHandle" prefHeight="31.0" prefWidth="76.0" stylesheets="@styles.css" text="Clear" textFill="#d3c5c5">
+                           <font>
+                              <Font name="MesloLGL Nerd Font Regular" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <Button fx:id="canvasBackButton" mnemonicParsing="false" stylesheets="@styles.css" text="Back" />
                         <ImageView fx:id="playPauseImage" fitHeight="28.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../res/pause_black_48x48.png" />
                            </image>
                         </ImageView>
-                     </graphic>
-                     <tooltip>
-                        <Tooltip text="Pause" textAlignment="CENTER">
-                           <font>
-                              <Font size="12.5" />
-                           </font>
-                        </Tooltip>
-                     </tooltip>
-                  </JFXButton>
-                  <JFXNodesList fx:id="nodeList" layoutX="147.0" layoutY="1.0" prefHeight="0.0" prefWidth="0.0">
-                     <children>
-                        <JFXButton fx:id="gear" contentDisplay="GRAPHIC_ONLY" prefHeight="35.0" prefWidth="44.0" style="-fx-background-radius: 100;">
-                           <graphic>
-                              <ImageView fitHeight="28.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../res/fast_forward_black_48x48.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                        <JFXButton fx:id="playPauseButton" contentDisplay="GRAPHIC_ONLY" onAction="#PlayPauseHandle" prefHeight="35.0" prefWidth="44.0" style="-fx-background-radius: 100;">
                            <tooltip>
-                              <Tooltip text="Change Animation Speed" textAlignment="CENTER">
+                              <Tooltip text="Pause" textAlignment="CENTER">
                                  <font>
                                     <Font size="12.5" />
                                  </font>
@@ -114,14 +123,31 @@
                            </tooltip>
                         </JFXButton>
                      </children>
-                  </JFXNodesList>
-                  <VBox alignment="CENTER" layoutX="29.0" layoutY="361.0" prefHeight="200.0" prefWidth="139.0" spacing="10.0">
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" layoutX="31.0" layoutY="208.0" prefHeight="114.0" prefWidth="139.0" spacing="10.0">
                      <children>
-                        <ToggleButton fx:id="addNodeButton" mnemonicParsing="false" onAction="#AddNodeHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Add Node" />
-                        <ToggleButton fx:id="addEdgeButton" mnemonicParsing="false" onAction="#AddEdgeHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Add Edge" />
+                        <RadioButton fx:id="uwButton" mnemonicParsing="false" text="Unweighted">
+                           <font>
+                              <Font name="MesloLGL Nerd Font Bold" size="12.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="wButton" mnemonicParsing="false" text="Weighted   ">
+                           <font>
+                              <Font name="MesloLGL Nerd Font Bold" size="12.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="udButton" mnemonicParsing="false" text="Undirected">
+                           <font>
+                              <Font name="MesloLGL Nerd Font Bold" size="12.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="dButton" mnemonicParsing="false" text="Directed   ">
+                           <font>
+                              <Font name="MesloLGL Nerd Font Bold" size="12.0" />
+                           </font>
+                        </RadioButton>
                      </children>
                   </VBox>
-                  <Button fx:id="canvasBackButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" stylesheets="@styles.css" text="Back" />
                </children>
             </AnchorPane>
          </children>

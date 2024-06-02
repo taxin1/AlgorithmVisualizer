@@ -23,3 +23,13 @@ git clone https://github.com/taxin1/AlgorithmVisualizer.git
 4. Run `AlgorithmVisualizerMenu.java`.
 
 ## Screenshots
+### Start Screen
+![Start Screen](screenshots/main.png)
+### Sorting - Data Added
+![Main Screen](screenshots/sorting1.png)
+### Sorting - Data Sorted
+![Main Screen](screenshots/sorting2.png)
+### Path Finding - Maze Created
+![Main Screen](screenshots/pathfinding1.png)
+### Path Finding - Maze Solved
+![Main Screen](screenshots/pathfinding2.png)

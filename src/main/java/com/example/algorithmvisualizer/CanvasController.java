@@ -56,8 +56,7 @@ public class CanvasController implements Initializable, ChangeListener {
     @FXML
     private JFXButton canvasBackButton, clearButton, resetButton, playPauseButton;
     @FXML
-    private JFXToggleButton addNodeButton, addEdgeButton, bfsButton, dfsButton, topSortButton, dijkstraButton,
-            articulationPointButton, mstButton;
+    private JFXToggleButton addNodeButton, addEdgeButton, bfsButton, dfsButton, dijkstraButton, mstButton;
     @FXML
     private ToggleGroup algoToggleGroup;
     @FXML
@@ -119,14 +118,12 @@ public class CanvasController implements Initializable, ChangeListener {
         if (weighted) {
             bfsButton.setDisable(true);
             dfsButton.setDisable(true);
-            articulationPointButton.setDisable(true);
         }
 
         if (unweighted) {
             dijkstraButton.setDisable(true);
         }
         if (directed) {
-            articulationPointButton.setDisable(true);
         }
 
         //Set back button action
@@ -134,10 +131,10 @@ public class CanvasController implements Initializable, ChangeListener {
             try {
                 ResetHandle(null);
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Panel1FXML.fxml")));
-
-                Scene scene = new Scene(root);
-                AlgorithmVisualizerMenuController.primaryStage.setScene(scene);
-            } catch (IOException ex) {
+                Scene scene = canvasBackButton.getScene();
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Styling.css")).toExternalForm());
+                scene.setRoot(root);
+                } catch (IOException ex) {
                 Logger.getLogger(CanvasController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
@@ -541,10 +538,8 @@ public class CanvasController implements Initializable, ChangeListener {
         hiddenPane.setPinnedSide(null);
 
         bfsButton.setDisable(true);
-        topSortButton.setDisable(true);
         dfsButton.setDisable(true);
         dijkstraButton.setDisable(true);
-        articulationPointButton.setDisable(true);
         mstButton.setDisable(true);
         playing = false;
         paused = false;
@@ -639,13 +634,6 @@ public class CanvasController implements Initializable, ChangeListener {
             bfsButton.setSelected(false);
             dfsButton.setDisable(false);
             dfsButton.setSelected(false);
-            if (undirected) {
-                articulationPointButton.setDisable(false);
-                articulationPointButton.setSelected(false);
-            } else if (directed) {
-                topSortButton.setDisable(false);
-                topSortButton.setSelected(false);
-            }
         }
         if (weighted) {
             dijkstraButton.setDisable(false);
@@ -671,13 +659,6 @@ public class CanvasController implements Initializable, ChangeListener {
             bfsButton.setSelected(false);
             dfsButton.setDisable(false);
             dfsButton.setSelected(false);
-            if (undirected) {
-                articulationPointButton.setDisable(false);
-                articulationPointButton.setSelected(false);
-            } else if (directed) {
-                topSortButton.setDisable(false);
-                topSortButton.setSelected(false);
-            }
         }
         if (weighted) {
             dijkstraButton.setDisable(false);
@@ -721,43 +702,6 @@ public class CanvasController implements Initializable, ChangeListener {
         dijkstra = false;
         mst = false;
         articulationPoint = false;
-    }
-
-    @FXML
-    public void TopSortHandle(ActionEvent event) {
-        addNode = false;
-        addEdge = false;
-        addNodeButton.setSelected(false);
-        addEdgeButton.setSelected(false);
-        addNodeButton.setDisable(true);
-        addEdgeButton.setDisable(true);
-        calculate = true;
-        clearButton.setDisable(false);
-        dfs = false;
-        bfs = false;
-        dijkstra = false;
-        mst = false;
-        articulationPoint = false;
-        topSortBool = true;
-        algo.newTopSort();
-    }
-
-    @FXML
-    public void ArticulationPointHandle(ActionEvent event) {
-        addNode = false;
-        addEdge = false;
-        addNodeButton.setSelected(false);
-        addEdgeButton.setSelected(false);;
-        addNodeButton.setDisable(true);
-        addEdgeButton.setDisable(true);
-        calculate = true;
-        clearButton.setDisable(false);
-        dfs = false;
-        bfs = false;
-        dijkstra = false;
-        articulationPoint = true;
-        mst = false;
-        algo.newArticulationPoint(getRandomStart());
     }
 
     @FXML
@@ -1306,358 +1250,8 @@ public class CanvasController implements Initializable, ChangeListener {
         }
         //</editor-fold>
 
-        //<editor-fold defaultstate="collapsed" desc="TopSort">
-        public void newTopSort() {
-            new TopSort();
-        }
-
-        class TopSort {
-
-            String reverse = "";
-            List<String> topSort = new ArrayList<>();
-            boolean cycleFound = false;
-
-            TopSort() {
-
-                //<editor-fold defaultstate="collapsed" desc="Animation Setup Distances">
-                st = new SequentialTransition();
-                //</editor-fold>
-
-                cycleFound = false;
-                for (NodeFX n : circles) {
-                    if (n.node.DAGColor == 0) {
-                        cycleExists(n.node, 0);
-                    }
-                }
-                if (cycleFound == false) {
-                    for (NodeFX source : circles) {
-                        if (source.node.visited == false) {
-                            topsortRecursion(source.node, 0);
-                        }
-                    }
-
-                    System.out.println("Hello World " + topSort);
-                    Collections.reverse(topSort);
-                    for (String s : topSort) {
-                        reverse += " -> " + s;
-                    }
-                    reverse = reverse.replaceFirst(" -> ", "");
-                    System.out.println(reverse);
-
-                    //<editor-fold defaultstate="collapsed" desc="Animation after algorithm is finished">
-                    st.setOnFinished(ev -> {
-                        for (NodeFX n : circles) {
-                            FillTransition ft1 = new FillTransition(Duration.millis(time), n);
-                            ft1.setToValue(Color.BLACK);
-                            ft1.play();
-                        }
-                        if (directed) {
-                            for (Shape n : edges) {
-                                n.setFill(Color.BLACK);
-                            }
-                        } else if (undirected) {
-                            for (Shape n : edges) {
-                                n.setStroke(Color.BLACK);
-                            }
-                        }
-
-                        Image image = new Image(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png"));
-                        playPauseImage.setImage(image);
-                        paused = true;
-                        playing = false;
-                        textFlow.appendText("---Finished--\n\n");
-                        textFlow.appendText("Top Sort: " + reverse + "\n");
-
-                    });
-                    st.onFinishedProperty();
-                    st.play();
-
-                    playing = true;
-                    paused = false;
-                    //</editor-fold>
-                } else {
-                    System.out.println("Cycle");
-                    BoxBlur blur = new BoxBlur(3, 3, 3);
-
-                    JFXDialogLayout dialogLayout = new JFXDialogLayout();
-                    dialogLayout.setStyle("-fx-background-color:#dfe6e9");
-                    JFXDialog dialog = new JFXDialog(stackRoot, dialogLayout, JFXDialog.DialogTransition.TOP);
-
-                    JFXButton button = new JFXButton("OK");
-                    button.setPrefSize(50, 30);
-                    button.getStyleClass().add("dialog-button");
-                    button.setButtonType(JFXButton.ButtonType.RAISED);
-                    dialogLayout.setActions(button);
-                    Label message = new Label("     Cycle Detected!\n"
-                            + "Cannot run TopSort on a  Directed Cyclic Graph!");
-                    message.setId("message");
-                    dialogLayout.setBody(message);
-                    button.setOnAction(e -> {
-                        dialog.close();
-                        anchorRoot.setEffect(null);
-                    });
-                    dialog.setOnDialogClosed(e -> {
-                        stackRoot.toBack();
-                        anchorRoot.setEffect(null);
-                        ClearHandle(null);
-                    });
-                    
-                    
-                    stackRoot.toFront();
-                    dialog.toFront();
-                    dialog.show();
-                    anchorRoot.setEffect(blur);
-                    dialogLayout.setPadding(new Insets(0, 0, 0, 0));
-                }
-            }
-
-            void cycleExists(Node source, int level) {
-                source.DAGColor = 1;
-                for (Edge e : source.adjacents) {
-                    if (e != null) {
-                        Node v = e.target;
-                        if (v.DAGColor == 1) {
-                            cycleFound = true;
-                        } else if (v.DAGColor == 0) {
-                            v.previous = source;
-                            cycleExists(v, level + 1);
-                        }
-                    }
-                }
-                source.DAGColor = 2;
-            }
-
-            public void topsortRecursion(Node source, int level) {
-                //<editor-fold defaultstate="collapsed" desc="Animation Control">
-                FillTransition ft = new FillTransition(Duration.millis(time), source.circle);
-                if (source.circle.getFill() == Color.BLACK) {
-                    ft.setToValue(Color.FORESTGREEN);
-                }
-                st.getChildren().add(ft);
-
-                String str = "";
-                for (int i = 0; i < level; i++) {
-                    str = str.concat("\t");
-                }
-                str = str.concat("Recursion(" + source.name + ") Enter\n");
-                final String str2 = str;
-                FadeTransition fd = new FadeTransition(Duration.millis(10), textFlow);
-                fd.setOnFinished(e -> {
-                    textFlow.appendText(str2);
-                });
-                fd.onFinishedProperty();
-                st.getChildren().add(fd);
-                //</editor-fold>
-                source.visited = true;
-                for (Edge e : source.adjacents) {
-                    if (e != null) {
-                        Node v = e.target;
-                        if (!v.visited) {
-                            v.minDistance = source.minDistance + 1;
-                            v.previous = source;
-                            //<editor-fold defaultstate="collapsed" desc="Change Edge colors">
-                            if (undirected) {
-                                StrokeTransition ftEdge = new StrokeTransition(Duration.millis(time), e.line);
-                                ftEdge.setToValue(Color.FORESTGREEN);
-                                st.getChildren().add(ftEdge);
-                            } else if (directed) {
-                                FillTransition ftEdge = new FillTransition(Duration.millis(time), e.line);
-                                ftEdge.setToValue(Color.FORESTGREEN);
-                                st.getChildren().add(ftEdge);
-                            }
-                            //</editor-fold>
-                            topsortRecursion(v, level + 1);
-                            //<editor-fold defaultstate="collapsed" desc="Animation Control">
-                            //<editor-fold defaultstate="collapsed" desc="Change Edge colors">
-                            if (undirected) {
-                                StrokeTransition ftEdge = new StrokeTransition(Duration.millis(time), e.line);
-                                ftEdge.setToValue(Color.BLUEVIOLET);
-                                st.getChildren().add(ftEdge);
-                            } else if (directed) {
-                                FillTransition ftEdge = new FillTransition(Duration.millis(time), e.line);
-                                ftEdge.setToValue(Color.BLUEVIOLET);
-                                st.getChildren().add(ftEdge);
-                            }
-                            //</editor-fold>
-                            FillTransition ft1 = new FillTransition(Duration.millis(time), v.circle);
-                            ft1.setToValue(Color.BLUEVIOLET);
-                            ft1.onFinishedProperty();
-                            st.getChildren().add(ft1);
-                            //</editor-fold>
-                        }
-                    }
-                }
-                str = "";
-                for (int i = 0; i < level; i++) {
-                    str = str.concat("\t");
-                }
-                topSort.add(source.name);
-
-                //<editor-fold defaultstate="collapsed" desc="Recursion exit text">
-                str = str.concat("Recursion(" + source.name + ") Exit\n");
-                final String str1 = str;
-                fd = new FadeTransition(Duration.millis(10), textFlow);
-                fd.setOnFinished(e -> {
-                    textFlow.appendText(str1);
-                });
-                fd.onFinishedProperty();
-                st.getChildren().add(fd);
-                //</editor-fold>
-            }
-        }
         //</editor-fold>
 
-        //<editor-fold defaultstate="collapsed" desc="Articulation Point">
-        public void newArticulationPoint(Node s) {
-            new ArticulationPoint(s);
-        }
-
-        class ArticulationPoint {
-
-            int timeCnt = 0;
-
-            ArticulationPoint(Node source) {
-
-                //<editor-fold defaultstate="collapsed" desc="Animation Setup Distances">
-                for (NodeFX n : circles) {
-                    visitTime.add(n.visitTime);
-                    n.visitTime.setLayoutX(n.point.x + 20);
-                    n.visitTime.setLayoutY(n.point.y);
-                    canvasGroup.getChildren().add(n.visitTime);
-
-                    lowTime.add(n.lowTime);
-                    n.lowTime.setLayoutX(n.point.x + 20);
-                    n.lowTime.setLayoutY(n.point.y + 13);
-                    canvasGroup.getChildren().add(n.lowTime);
-
-                    n.node.isArticulationPoint = false;
-                }
-
-                st = new SequentialTransition();
-                source.circle.lowTime.setText("Low : " + source.name);
-                source.circle.visitTime.setText("Visit : " + source.visitTime);
-                //</editor-fold>
-
-                timeCnt = 0;
-                RecAP(source);
-
-                for (NodeFX n : circles) {
-                    if (n.node.isArticulationPoint) {
-                        System.out.println(n.node.name);
-                    }
-                }
-
-                //<editor-fold defaultstate="collapsed" desc="Animation after algorithm is finished">
-                st.setOnFinished(ev -> {
-                    for (NodeFX n : circles) {
-                        FillTransition ft1 = new FillTransition(Duration.millis(time), n);
-                        ft1.setToValue(Color.BLACK);
-                        ft1.play();
-                    }
-                    if (directed) {
-                        for (Shape n : edges) {
-                            n.setFill(Color.BLACK);
-                        }
-                    } else if (undirected) {
-                        for (Shape n : edges) {
-                            n.setStroke(Color.BLACK);
-                        }
-                    }
-                    for (NodeFX n : circles) {
-                        if (n.node.isArticulationPoint) {
-                            FillTransition ft1 = new FillTransition(Duration.millis(time), n);
-                            ft1.setToValue(Color.CHARTREUSE);
-                            ft1.play();
-                        }
-                    }
-                    Image image = new Image(getClass().getResourceAsStream("/res/play_arrow_black_48x48.png"));
-                    playPauseImage.setImage(image);
-                    paused = true;
-                    playing = false;
-                });
-                st.onFinishedProperty();
-                st.play();
-                playing = true;
-                //</editor-fold>
-            }
-
-            void RecAP(Node s) {
-                //<editor-fold defaultstate="collapsed" desc="Animation Control">
-                FillTransition ft = new FillTransition(Duration.millis(time), s.circle);
-                if (s.circle.getFill() == Color.BLACK) {
-                    ft.setToValue(Color.FORESTGREEN);
-                }
-                ft.setOnFinished(ev -> {
-                    s.circle.lowTime.setText("Low : " + s.lowTime);
-                    s.circle.visitTime.setText("Visit : " + s.visitTime);
-                });
-                st.getChildren().add(ft);
-                //</editor-fold>
-                s.visited = true;
-                s.visitTime = timeCnt;
-                s.lowTime = timeCnt;
-
-                timeCnt++;
-                int childCount = 0;
-
-                for (Edge e : s.adjacents) {
-                    if (e != null) {
-                        Node v = e.target;
-                        if (s.previous == v) {
-                            continue;
-                        }
-                        if (!v.visited) {
-                            v.previous = s;
-                            childCount++;
-                            //<editor-fold defaultstate="collapsed" desc="Change Edge colors">
-                            if (undirected) {
-                                StrokeTransition ftEdge = new StrokeTransition(Duration.millis(time), e.line);
-                                ftEdge.setToValue(Color.FORESTGREEN);
-                                st.getChildren().add(ftEdge);
-                            } else if (directed) {
-                                FillTransition ftEdge = new FillTransition(Duration.millis(time), e.line);
-                                ftEdge.setToValue(Color.FORESTGREEN);
-                                st.getChildren().add(ftEdge);
-                            }
-                            //</editor-fold>
-                            RecAP(v);
-
-                            s.lowTime = Math.min(s.lowTime, v.lowTime);
-                            if (s.visitTime <= v.lowTime && s.previous != null) {
-                                s.isArticulationPoint = true;
-                            }
-
-                            //<editor-fold defaultstate="collapsed" desc="Animation Control">
-                            ///<editor-fold defaultstate="collapsed" desc="Change Edge colors">
-                            if (undirected) {
-                                StrokeTransition ftEdge = new StrokeTransition(Duration.millis(time), e.line);
-                                ftEdge.setToValue(Color.BLUEVIOLET);
-                                st.getChildren().add(ftEdge);
-                            } else if (directed) {
-                                FillTransition ftEdge = new FillTransition(Duration.millis(time), e.line);
-                                ftEdge.setToValue(Color.BLUEVIOLET);
-                                st.getChildren().add(ftEdge);
-                            }
-                            //</editor-fold>
-                            FillTransition ft1 = new FillTransition(Duration.millis(time), v.circle);
-                            ft1.setToValue(Color.BLUEVIOLET);
-                            ft1.setOnFinished(ev -> {
-                                s.circle.lowTime.setText("Low : " + s.lowTime);
-                                s.circle.visitTime.setText("Visit : " + s.visitTime);
-                            });
-                            ft1.onFinishedProperty();
-                            st.getChildren().add(ft1);
-                            //</editor-fold>
-                        } else {
-                            s.lowTime = Math.min(s.lowTime, v.visitTime);
-                        }
-                    }
-                }
-                if (childCount > 1 && s.previous == null) {
-                    s.isArticulationPoint = true;
-                }
-            }
-        }
         //</editor-fold>
 
         //<editor-fold defaultstate="collapsed" desc="MST">

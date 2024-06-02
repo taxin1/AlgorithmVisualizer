@@ -124,32 +124,13 @@
                               <Font name="Roboto Light" size="20.0" />
                            </font>
                         </JFXToggleButton>
-                        <JFXToggleButton fx:id="articulationPointButton" alignment="BASELINE_CENTER" layoutX="15.0" layoutY="137.0" onAction="#ArticulationPointHandle" prefHeight="70.0" prefWidth="208.0" size="9.0" text="Articulation &#10;Point" toggleColor="#ff5722" toggleGroup="$algoToggleGroup" toggleLineColor="#ffab91" unToggleColor="#546e7a" unToggleLineColor="#90a4ae" GridPane.rowIndex="4">
-                           <font>
-                              <Font name="Roboto Light" size="20.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets top="2.0" />
-                           </GridPane.margin>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </JFXToggleButton>
-                        <JFXToggleButton fx:id="mstButton" alignment="BASELINE_CENTER" onAction="#MSTHandle" prefHeight="78.0" prefWidth="161.0" size="9.0" text="MST" toggleColor="#ff5722" toggleGroup="$algoToggleGroup" toggleLineColor="#ffab91" unToggleColor="#546e7a" unToggleLineColor="#90a4ae" GridPane.rowIndex="5">
+                        <JFXToggleButton fx:id="mstButton" alignment="BASELINE_CENTER" onAction="#MSTHandle" prefHeight="78.0" prefWidth="161.0" size="9.0" text="MST" toggleColor="#ff5722" toggleGroup="$algoToggleGroup" toggleLineColor="#ffab91" unToggleColor="#546e7a" unToggleLineColor="#90a4ae" GridPane.rowIndex="4">
                            <font>
                               <Font name="Roboto Light" size="20.0" />
                            </font>
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
-                           <padding>
-                              <Insets right="25.0" />
-                           </padding>
-                        </JFXToggleButton>
-                        <JFXToggleButton fx:id="topSortButton" onAction="#TopSortHandle" prefHeight="45.0" prefWidth="194.0" size="9.0" text="TopSort" toggleColor="#ff5722" toggleGroup="$algoToggleGroup" toggleLineColor="#ffab91" unToggleColor="#546e7a" unToggleLineColor="#90a4ae" GridPane.rowIndex="6">
-                           <font>
-                              <Font name="Roboto Light" size="20.0" />
-                           </font>
                            <padding>
                               <Insets right="25.0" />
                            </padding>

@@ -1,6 +1,5 @@
 package com.example.algorithmvisualizer;
 
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +18,7 @@ import java.util.logging.Logger;
 
 public class Panel1Controller implements Initializable {
 
-    public static boolean directed = false, undirected = false, weighted = false, unweighted = false;
+    public static boolean directed = false, undirected = true, weighted = false, unweighted = true;
 
     @FXML
     public Button panel1Next, panel2Back;
@@ -33,82 +31,79 @@ public class Panel1Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        // Initialize the radio buttons with default values
         dButton.setSelected(directed);
-        wButton.setSelected(weighted);
         udButton.setSelected(undirected);
+        wButton.setSelected(weighted);
         uwButton.setSelected(unweighted);
 
-        // Thread for button control
-        panel1Next.setDisable(true);
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    System.out.println(directed + " " + weighted);
-                    if ((directed == true || undirected == true) && (weighted == true || unweighted == true)) {
-                        System.out.println("In thread " + directed);
-                        panel1Next.setDisable(false);
-                        panel1Next.setStyle("-fx-background-color : #487eb0;");
-                        break;
-                    }
-                }
-                System.out.println("Exiting thread");
-            }
-        };
-        t.start();
+        // Set the initial state of the panel1Next button
+        panel1Next.setDisable(!(directed || undirected) || !(weighted || unweighted));
 
         // Button Action listeners
         dButton.setOnAction(e -> {
             directed = true;
             undirected = false;
-            System.out.println("dButton");
+            updateNextButtonState();
         });
         udButton.setOnAction(e -> {
             directed = false;
             undirected = true;
-            System.out.println("udButton");
+            updateNextButtonState();
         });
         wButton.setOnAction(e -> {
             weighted = true;
             unweighted = false;
-            System.out.println("wButton");
+            updateNextButtonState();
         });
         uwButton.setOnAction(e -> {
             weighted = false;
             unweighted = true;
-            System.out.println("uwButton");
+            updateNextButtonState();
         });
-        panel1Next.setOnAction(e -> {
-            FadeOut();
-        });
-
+        panel1Next.setOnAction(e -> loadNextScene());
+        panel2Back.setOnAction(e -> loadPrevScene());
     }
 
-    void FadeOut() {
-        FadeTransition ft = new FadeTransition();
-        ft.setDuration(Duration.millis(1000));
-        ft.setNode(panel1);
-        ft.setFromValue(1);
-        ft.setToValue(0);
-        ft.setOnFinished(e -> {
-            loadNextScene();
-        });
-        ft.play();
-        System.out.println("Here");
+    private void updateNextButtonState() {
+        // Enable or disable the panel1Next button based on the selections
+        boolean isNextButtonEnabled = (directed || undirected) && (weighted || unweighted);
+        panel1Next.setDisable(!isNextButtonEnabled);
+        if (isNextButtonEnabled) {
+            panel1Next.setStyle("-fx-background-color : #487eb0;");
+        } else {
+            panel1Next.setStyle(null); // Reset to default style if necessary
+        }
     }
 
     void loadNextScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Canvas.fxml"));
             Parent root = loader.load();
-            Scene newScene = new Scene(root);
+            Scene newScene = panel1Next.getScene();
             cref = loader.getController();
-//            System.out.println("Controller ref: " + cref);
+
             newScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Styling.css")).toExternalForm());
+            newScene.setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(Panel1Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    void loadPrevScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/algorithmvisualizer/Menu.fxml"));
+            Parent menuRoot = loader.load();
+            AlgorithmVisualizerMenuController controller = loader.getController();
+            Scene scene = panel2Back.getScene();
+            controller.setPrimaryScene(scene);
+            if (scene == null) {
+                System.out.println("Scene is null. Cannot set root.");
+            } else {
+                scene.setRoot(menuRoot);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

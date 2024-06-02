@@ -10,6 +10,28 @@ Algorithm Visualizer is a JavaFX application designed to visualize various algor
 - **Customizable Parameters**: Adjust parameters such as array size, animation speed, and input data to tailor the visualization experience.
 - **User-Friendly Interface**: Intuitive UI design for seamless interaction and easy navigation.
 
+## Algorithms
+**Sorting**
+1. Bubble sort
+2. Selection sort
+3. Insertion sort
+4. Shell sort
+5. Merge sort
+6. Quick sort
+7. Counting sort
+8. Radix sort
+
+**Path Finding (Maze Solving)**
+1. BFS
+2. DFS
+3. Dijkstra's Algorithm
+
+**Graph**
+1. BFS
+2. DFS
+3. Dijkstra's Algorithm
+4. MST
+
 ## How to Run
 1. Clone the repo to your local machine.
 ```bash
@@ -33,6 +55,8 @@ git clone https://github.com/taxin1/AlgorithmVisualizer.git
 ![Main Screen](screenshots/pathfinding1.png)
 ### Path Finding - Maze Solved
 ![Main Screen](screenshots/pathfinding2.png)
+### Graph
+![Main Screen](screenshots/graph.png)
 
 ## Acknowledgements
 This is made as the final project for CSE 4402: Visual Programming Lab.

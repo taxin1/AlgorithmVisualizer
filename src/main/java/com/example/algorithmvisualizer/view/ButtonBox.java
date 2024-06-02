@@ -76,11 +76,15 @@ public class ButtonBox extends HBox {
             clearContent();
             reloadAlgorithmVisualizerMenu(loader);
         });
+        // backButton.setStyle("-fx-background-color: lightgrey;");
 
         this.sortButton.getStyleClass().add("button");
+        this.sortButton.setStyle("-fx-background-color: lightgreen;");
         this.resetButton.getStyleClass().add("button");
+        this.resetButton.setStyle("-fx-background-color: yellow;");
         this.backButton.getStyleClass().add("button");
         this.removeBarsButton.getStyleClass().add("button");
+        this.removeBarsButton.setStyle("-fx-background-color: lightcoral;");
         playPause.getStyleClass().add("button");
         this.durationSlider.getStyleClass().add("slider");
 

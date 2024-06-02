@@ -94,7 +94,7 @@ public class AlgorithmBox extends VBox {
 
         // Select the newly selected button
         this.selectedButton = selectedButton;
-        this.selectedButton.setStyle("-fx-background-color: #007bff;");
+        this.selectedButton.setStyle("-fx-background-color: #87CEFA;");
 
 
         selectedAlgorithm = algorithmName;

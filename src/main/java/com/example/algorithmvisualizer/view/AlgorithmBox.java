@@ -23,14 +23,14 @@ public class AlgorithmBox extends VBox {
     private static String selectedAlgorithm = "Bubble Sort";
     private Button selectedButton;
 
-    public AlgorithmBox(FieldBox fieldBox){
+    public AlgorithmBox(FieldBox fieldBox, DescriptionBox descriptionBox){
         setPrefWidth(PREFERRED_WIDTH);
         this.getStyleClass().add("vbox2");
 
         setSpacing(5);
 
         // Initialize buttons
-        initializeButtons(fieldBox);
+        initializeButtons(fieldBox, descriptionBox);
 
         // Add buttons to the VBox
         this.getChildren().addAll(
@@ -44,10 +44,10 @@ public class AlgorithmBox extends VBox {
                 radixSortButton
         );
 
-        selectAlgorithm(bubbleSortButton,"Bubble Sort", fieldBox);
+        selectAlgorithm(bubbleSortButton,"Bubble Sort", fieldBox, descriptionBox);
     }
 
-    private void initializeButtons(FieldBox fieldBox) {
+    private void initializeButtons(FieldBox fieldBox, DescriptionBox descriptionBox) {
         getChildren().add(titleLabel);
 
         double buttonWidth = 120;
@@ -72,17 +72,17 @@ public class AlgorithmBox extends VBox {
 //        countingSortButton.setMaxWidth(Double.MAX_VALUE);
 //        radixSortButton.setMaxWidth(Double.MAX_VALUE);
 
-        bubbleSortButton.setOnAction(event -> selectAlgorithm(bubbleSortButton, "Bubble Sort", fieldBox));
-        selectionSortButton.setOnAction(event -> selectAlgorithm(selectionSortButton, "Selection Sort", fieldBox));
-        insertionSortButton.setOnAction(event -> selectAlgorithm(insertionSortButton,"Insertion Sort", fieldBox));
-        shellSortButton.setOnAction(event -> selectAlgorithm(shellSortButton,"Shell Sort", fieldBox));
-        mergeSortButton.setOnAction(event -> selectAlgorithm(mergeSortButton,"Merge Sort", fieldBox));
-        quickSortButton.setOnAction(event -> selectAlgorithm(quickSortButton,"Quick Sort", fieldBox));
-        countingSortButton.setOnAction(event -> selectAlgorithm(countingSortButton,"Counting Sort", fieldBox));
-        radixSortButton.setOnAction(event -> selectAlgorithm(radixSortButton,"Radix Sort", fieldBox));
+        bubbleSortButton.setOnAction(event -> selectAlgorithm(bubbleSortButton, "Bubble Sort", fieldBox, descriptionBox));
+        selectionSortButton.setOnAction(event -> selectAlgorithm(selectionSortButton, "Selection Sort", fieldBox, descriptionBox));
+        insertionSortButton.setOnAction(event -> selectAlgorithm(insertionSortButton,"Insertion Sort", fieldBox, descriptionBox));
+        shellSortButton.setOnAction(event -> selectAlgorithm(shellSortButton,"Shell Sort", fieldBox, descriptionBox));
+        mergeSortButton.setOnAction(event -> selectAlgorithm(mergeSortButton,"Merge Sort", fieldBox, descriptionBox));
+        quickSortButton.setOnAction(event -> selectAlgorithm(quickSortButton,"Quick Sort", fieldBox, descriptionBox));
+        countingSortButton.setOnAction(event -> selectAlgorithm(countingSortButton,"Counting Sort", fieldBox, descriptionBox));
+        radixSortButton.setOnAction(event -> selectAlgorithm(radixSortButton,"Radix Sort", fieldBox, descriptionBox));
     }
 
-    private void selectAlgorithm(Button selectedButton, String algorithmName, FieldBox fieldBox) {
+    private void selectAlgorithm(Button selectedButton, String algorithmName, FieldBox fieldBox, DescriptionBox descriptionBox) {
         if (selectedButton == this.selectedButton) {
             return;
         }
@@ -98,9 +98,11 @@ public class AlgorithmBox extends VBox {
 
         selectedAlgorithm = algorithmName;
         System.out.println("Selected algorithm: " + selectedAlgorithm);
-        if (MainWindow.descriptionBox != null) {
-            MainWindow.descriptionBox.updateDescription(getDescriptionForAlgorithm(selectedAlgorithm));
-        }
+        descriptionBox.updateDescription(selectedAlgorithm);
+
+//        if (MainWindow.descriptionBox != null) {
+//            MainWindow.descriptionBox.updateDescription(getDescriptionForAlgorithm(selectedAlgorithm));
+//        }
         if (selectedAlgorithm.equals("Radix Sort")) {
             for (Node node : fieldBox.getChildren()) {
                 if (node instanceof EnterField currentField) {

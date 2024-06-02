@@ -34,7 +34,7 @@ public class MainWindow extends BorderPane {
         this.setTop(fieldBox);
         this.setCenter(chartPane);
         this.setBottom(new ButtonBox(fieldBox, loader, algorithmVisualizerMenuScene, stylesheetPath));
-        this.setLeft(new AlgorithmBox(fieldBox));
+        this.setLeft(new AlgorithmBox(fieldBox, descriptionBox));
         this.setRight(descriptionBox);
     }
 }

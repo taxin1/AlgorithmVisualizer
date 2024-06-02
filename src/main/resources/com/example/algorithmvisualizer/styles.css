@@ -38,6 +38,15 @@
     -fx-font-weight: bold;
 }
 
+.vbox3{
+    -fx-border-width: 0;
+    -fx-alignment: center;
+    -fx-max-width: 300;
+    -fx-max-height: 400;
+    -fx-font-family: "MesloLGL Nerd Font";
+    -fx-font-weight: bold;
+}
+
 .list-view{
     -fx-alignment: center;
 }

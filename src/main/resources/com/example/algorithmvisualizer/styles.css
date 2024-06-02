@@ -84,6 +84,17 @@
     -fx-scale-y: 1.05; /* Slightly increase size */
 }
 
+.button:disabled{
+    -fx-background-color: darkgray;
+    -fx-text-fill: gray;
+    -fx-opacity: 0.6;
+}
+
+.button:selected{
+    -fx-background-color: lightgreen;
+    -fx-text-fill: white;
+}
+
 .vbox{
     -fx-min-width: 100px;
     -fx-border-color: gray;

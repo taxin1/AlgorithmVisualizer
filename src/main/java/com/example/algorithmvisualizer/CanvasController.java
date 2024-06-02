@@ -16,6 +16,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -54,9 +55,11 @@ public class CanvasController implements Initializable, ChangeListener {
     @FXML
     private StackPane stackRoot;
     @FXML
-    private JFXButton canvasBackButton, clearButton, resetButton, playPauseButton;
+    private Button canvasBackButton, clearButton, resetButton, playPauseButton;
     @FXML
-    private JFXToggleButton addNodeButton, addEdgeButton, bfsButton, dfsButton, dijkstraButton, mstButton;
+    private ToggleButton bfsButton, dfsButton, dijkstraButton, mstButton;
+    @FXML
+    private ToggleButton addNodeButton, addEdgeButton;
     @FXML
     private ToggleGroup algoToggleGroup;
     @FXML

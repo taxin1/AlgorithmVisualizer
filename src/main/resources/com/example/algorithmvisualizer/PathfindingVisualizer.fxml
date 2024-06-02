@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -501,29 +502,30 @@
             </GridPane>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="900.0" spacing="5.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="902.0" spacing="5.0">
          <children>
-             <Button fx:id="resetPath" alignment="CENTER" mnemonicParsing="false" text="Reset Path">
-                 <font>
-                     <Font name="Verdana" size="12.0" />
-                 </font>
-             </Button>
-            <Button fx:id="resetObstacles" mnemonicParsing="false" text="Reset Obstacles">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="resetEverything" mnemonicParsing="false" text="Reset Everything">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="run" alignment="CENTER" mnemonicParsing="false" text="Run">
+            <Button fx:id="run" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="70.0" stylesheets="@styles.css" text="Run">
                <font>
                   <Font name="Verdana Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButtonClick" text="Back" />
+             <Button fx:id="resetPath" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="116.0" stylesheets="@styles.css" text="Reset Path">
+                 <font>
+                     <Font name="Verdana" size="12.0" />
+                 </font>
+             </Button>
+            <Button fx:id="resetObstacles" mnemonicParsing="false" prefHeight="39.0" prefWidth="160.0" stylesheets="@styles.css" text="Reset Obstacles">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="resetEverything" mnemonicParsing="false" prefHeight="39.0" prefWidth="170.0" stylesheets="@styles.css" text="Reset Everything">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Pane prefHeight="39.0" prefWidth="279.0" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButtonClick" stylesheets="@styles.css" text="Back" />
          </children>
          <VBox.margin>
             <Insets left="10.0" />

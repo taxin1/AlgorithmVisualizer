@@ -6,8 +6,16 @@
 
 .hbox{
     -fx-spacing: 5;
+    -fx-alignment: center;
+    -fx-min-height: 30;
+
+}
+
+.chartpane{
+    -fx-spacing: 5;
     -fx-alignment: bottom-center;
     -fx-min-height: 30;
+    -fx-padding: 10 10 0 0;
 }
 
 .buttonbox{
@@ -22,11 +30,21 @@
     -fx-max-width: 80;
 }
 
+.vbox2{
+    -fx-border-width: 0;
+    -fx-alignment: center;
+    -fx-max-width: 120;
+    -fx-font-family: "MesloLGL Nerd Font";
+    -fx-font-weight: bold;
+}
+
 .list-view{
     -fx-alignment: center;
 }
 
 .text-field{
+    -fx-font-family: "MesloLGL Nerd Font";
+    -fx-font-weight: bold;
     -fx-background-insets: 0;
     -fx-border-style: solid;
     -fx-background-radius: 40;

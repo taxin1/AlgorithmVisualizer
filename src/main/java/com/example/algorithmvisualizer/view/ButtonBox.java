@@ -8,6 +8,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -87,6 +89,11 @@ public class ButtonBox extends HBox {
         this.getChildren().add(removeBarsButton);
         this.getChildren().add(playPause); // Add the toggle button to the children of ButtonBox
         this.getChildren().add(durationSlider);
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        this.getChildren().add(spacer);
+
         this.getChildren().add(backButton);
     }
 

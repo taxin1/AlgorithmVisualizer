@@ -10,12 +10,12 @@ import javafx.scene.text.Text;
 public class ChartPane extends HBox {
 
     public ChartPane(){
-        this.getStyleClass().add("hbox");
+        this.getStyleClass().add("chartpane");
     }
     public void updateBar(int height, int index){
         if(this.getChildren().size() <= index){
             Text text = new Text(Integer.toString(height));
-            Rectangle rect = new Rectangle(20, height * 10);
+            Rectangle rect = new Rectangle(20, height * 9);
             rect.setFill(Color.CORNFLOWERBLUE);
 
             StackPane stackPane = new StackPane();

@@ -7,16 +7,16 @@
 
 <AnchorPane fx:id="mainAnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.algorithmvisualizer.AlgorithmVisualizerMenuController">
    <children>
-      <Button alignment="CENTER" layoutX="550.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleGraphButtonClick" prefHeight="59.0" prefWidth="219.0" stylesheets="@menuButtonStyle.css" text="Graph Algorithms" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="531.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleGraphButtonClick" prefHeight="59.0" prefWidth="238.0" stylesheets="@menuButtonStyle.css" text="Graph Algorithms" textAlignment="CENTER">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font></Button>
-      <Button alignment="CENTER" layoutX="550.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleSearchingButtonClick" prefHeight="59.0" prefWidth="219.0" stylesheets="@menuButtonStyle.css" text="Pathfinding Algorithms" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="531.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleSearchingButtonClick" prefHeight="59.0" prefWidth="238.0" stylesheets="@menuButtonStyle.css" text="Pathfinding Algorithms" textAlignment="CENTER">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="550.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleSortingButtonClick" prefHeight="59.0" prefWidth="219.0" stylesheets="@menuButtonStyle.css" text="Sorting Algorithms" textAlignment="CENTER">
+      <Button alignment="CENTER" layoutX="531.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleSortingButtonClick" prefHeight="59.0" prefWidth="238.0" stylesheets="@menuButtonStyle.css" text="Sorting Algorithms" textAlignment="CENTER">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="16.0" />
          </font>
@@ -26,7 +26,7 @@
             <Font name="MesloLGL Nerd Font Bold" size="58.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="625.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleCloseButtonClick" stylesheets="@menuButtonStyle.css" text="Close">
+      <Button alignment="CENTER" layoutX="615.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleCloseButtonClick" stylesheets="@menuButtonStyle.css" text="Close">
          <font>
             <Font name="MesloLGL Nerd Font Bold" size="14.0" />
          </font>

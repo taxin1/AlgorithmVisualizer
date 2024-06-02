@@ -7,7 +7,8 @@ public class FieldBox extends HBox {
     private static Label label = new Label("Enter Values 1-50: ");
 
     public FieldBox(){
-        label.setStyle("-fx-font-weight: bold");
+        label.setStyle("-fx-font-family: \"MesloLGL Nerd Font\";");
+        label.setStyle("-fx-font-weight: bold;");
         this.getStyleClass().add("hbox");
         this.getChildren().add(label);
 

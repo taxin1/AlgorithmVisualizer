@@ -19,6 +19,7 @@ public class DescriptionBox extends VBox {
 
         this.setPrefWidth(250);
         this.setPrefHeight(250);
+        descriptionTextArea.setStyle("-fx-background-color: white;");
     }
 
     public void setDescription(String description) {

@@ -160,7 +160,7 @@ public class CanvasController implements Initializable, ChangeListener {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/algorithmvisualizer/Menu.fxml"));
                 Parent menuRoot = loader.load();
                 Scene scene = canvasBackButton.getScene();
-                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("menuButtonStyle.css")).toExternalForm());
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("menuStyle.css")).toExternalForm());
                 scene.setRoot(menuRoot);
                 AlgorithmVisualizerMenuController controller = loader.getController();
                 controller.setPrimaryScene(scene);

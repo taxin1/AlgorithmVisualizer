@@ -62,16 +62,16 @@
                               <Font name="MesloLGL Nerd Font Bold" size="18.0" />
                            </font>
                         </Label>
-                        <ToggleButton fx:id="bfsButton" mnemonicParsing="false" onAction="#BFSHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="BFS" />
-                        <ToggleButton fx:id="dfsButton" mnemonicParsing="false" onAction="#DFSHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="DFS" />
-                        <ToggleButton fx:id="dijkstraButton" mnemonicParsing="false" onAction="#DijkstraHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Dijkstra" />
-                        <ToggleButton fx:id="mstButton" mnemonicParsing="false" onAction="#MSTHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="MST" />
+                        <ToggleButton fx:id="bfsButton" mnemonicParsing="false" onAction="#BFSHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@generalStyle.css" text="BFS" />
+                        <ToggleButton fx:id="dfsButton" mnemonicParsing="false" onAction="#DFSHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@generalStyle.css" text="DFS" />
+                        <ToggleButton fx:id="dijkstraButton" mnemonicParsing="false" onAction="#DijkstraHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@generalStyle.css" text="Dijkstra" />
+                        <ToggleButton fx:id="mstButton" mnemonicParsing="false" onAction="#MSTHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@generalStyle.css" text="MST" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" layoutX="30.0" layoutY="332.0" prefHeight="256.0" prefWidth="139.0" spacing="10.0">
                      <children>
-                        <ToggleButton fx:id="addNodeButton" mnemonicParsing="false" onAction="#AddNodeHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Add Node" />
-                        <ToggleButton fx:id="addEdgeButton" mnemonicParsing="false" onAction="#AddEdgeHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@styles.css" text="Add Edge" />
+                        <ToggleButton fx:id="addNodeButton" mnemonicParsing="false" onAction="#AddNodeHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@generalStyle.css" text="Add Node" />
+                        <ToggleButton fx:id="addEdgeButton" mnemonicParsing="false" onAction="#AddEdgeHandle" prefHeight="30.0" prefWidth="120.0" styleClass="button" stylesheets="@generalStyle.css" text="Add Edge" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="261.0" prefHeight="114.0" prefWidth="139.0" spacing="10.0" AnchorPane.leftAnchor="30.0">
@@ -115,8 +115,8 @@
             <HBox alignment="CENTER_LEFT" layoutX="35.0" layoutY="537.0" prefHeight="62.0" prefWidth="866.0" spacing="5.0">
                <children>
                   <JFXNodesList fx:id="nodeList" prefHeight="0.0" prefWidth="0.0" />
-                  <Button fx:id="playPauseButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#PlayPauseHandle" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: lightgreen;" stylesheets="@styles.css" text="Play" />
-                  <JFXButton fx:id="clearButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" onAction="#ClearHandle" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: orange;" stylesheets="@styles.css" text="Clear Path" textFill="#d3c5c5">
+                  <Button fx:id="playPauseButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#PlayPauseHandle" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: lightgreen;" stylesheets="@generalStyle.css" text="Play" />
+                  <JFXButton fx:id="clearButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" onAction="#ClearHandle" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: orange;" stylesheets="@generalStyle.css" text="Clear Path" textFill="#d3c5c5">
                      <font>
                         <Font name="MesloLGL Nerd Font Regular" size="12.0" />
                      </font>
@@ -124,7 +124,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="resetButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" onAction="#ResetHandle" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: lightcoral;" stylesheets="@styles.css" text="Remove All" textFill="#d3c5c5">
+                  <JFXButton fx:id="resetButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" onAction="#ResetHandle" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: lightcoral;" stylesheets="@generalStyle.css" text="Remove All" textFill="#d3c5c5">
                      <font>
                         <Font name="MesloLGL Nerd Font Mono Bold" size="12.0" />
                      </font>
@@ -132,13 +132,13 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <Slider fx:id="slider" blockIncrement="100.0" max="1000.0" min="10.0" prefHeight="14.0" prefWidth="307.0" stylesheets="@styles.css" value="500.0" />
+                  <Slider fx:id="slider" blockIncrement="100.0" max="1000.0" min="10.0" prefHeight="14.0" prefWidth="307.0" stylesheets="@generalStyle.css" value="500.0" />
                   <Pane prefHeight="62.0" prefWidth="69.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Pane>
-                  <Button fx:id="canvasBackButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" stylesheets="@styles.css" text="Back" />
+                  <Button fx:id="canvasBackButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" stylesheets="@generalStyle.css" text="Back" />
                </children>
             </HBox>
          </children>

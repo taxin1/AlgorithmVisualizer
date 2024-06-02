@@ -25,9 +25,9 @@
                      <font>
                         <Font name="MesloLGL Nerd Font Bold" size="18.0" />
                      </font></Label>
-                  <Button fx:id="bfsButton" mnemonicParsing="false" onAction="#handlebfsButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@styles.css" text="BFS" />
-                  <Button fx:id="dfsButton" mnemonicParsing="false" onAction="#handledfsButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@styles.css" text="DFS" />
-                  <Button fx:id="dijkstraButton" mnemonicParsing="false" onAction="#handledijkstraButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@styles.css" text="Dijkstra" />
+                  <Button fx:id="bfsButton" mnemonicParsing="false" onAction="#handlebfsButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@generalStyle.css" text="BFS" />
+                  <Button fx:id="dfsButton" mnemonicParsing="false" onAction="#handledfsButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@generalStyle.css" text="DFS" />
+                  <Button fx:id="dijkstraButton" mnemonicParsing="false" onAction="#handledijkstraButtonClick" prefHeight="30.0" prefWidth="120.0" stylesheets="@generalStyle.css" text="Dijkstra" />
                </children>
                <HBox.margin>
                   <Insets />
@@ -513,7 +513,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="858.0" spacing="5.0">
          <children>
-            <Button fx:id="run" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: lightgreen;" stylesheets="@styles.css" text="Run">
+            <Button fx:id="run" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: lightgreen;" stylesheets="@generalStyle.css" text="Run">
                <font>
                   <Font name="Verdana Bold" size="14.0" />
                </font>
@@ -521,23 +521,23 @@
                   <Insets left="25.0" />
                </HBox.margin>
             </Button>
-             <Button fx:id="resetPath" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="114.0" style="-fx-background-color: yellow;" stylesheets="@styles.css" text="Reset Path">
+             <Button fx:id="resetPath" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="114.0" style="-fx-background-color: yellow;" stylesheets="@generalStyle.css" text="Reset Path">
                  <font>
                      <Font name="Verdana" size="12.0" />
                  </font>
              </Button>
-            <Button fx:id="resetObstacles" mnemonicParsing="false" prefHeight="39.0" prefWidth="161.0" style="-fx-background-color: orange;" stylesheets="@styles.css" text="Reset Obstacles">
+            <Button fx:id="resetObstacles" mnemonicParsing="false" prefHeight="39.0" prefWidth="161.0" style="-fx-background-color: orange;" stylesheets="@generalStyle.css" text="Reset Obstacles">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="resetEverything" mnemonicParsing="false" prefHeight="39.0" prefWidth="165.0" style="-fx-background-color: lightcoral;" stylesheets="@styles.css" text="Reset Everything">
+            <Button fx:id="resetEverything" mnemonicParsing="false" prefHeight="39.0" prefWidth="165.0" style="-fx-background-color: lightcoral;" stylesheets="@generalStyle.css" text="Reset Everything">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
             <Pane prefHeight="40.0" prefWidth="175.0" />
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButtonClick" prefWidth="70.0" stylesheets="@styles.css" text="Back" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButtonClick" prefWidth="70.0" stylesheets="@generalStyle.css" text="Back" />
          </children>
          <VBox.margin>
             <Insets left="10.0" />

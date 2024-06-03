@@ -58,6 +58,11 @@ git clone https://github.com/taxin1/AlgorithmVisualizer.git
 ### Graph
 ![Main Screen](screenshots/graph.png)
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
 ## Acknowledgements
 This is made as the final project for CSE 4402: Visual Programming Lab.
 
